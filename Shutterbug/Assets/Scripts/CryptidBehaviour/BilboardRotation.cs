@@ -38,7 +38,5 @@ public class BilboardRotation : MonoBehaviour
             m_transform.rotation = Quaternion.LookRotation(m_transform.position - m_goPlayer.transform.position);
             m_childSpriteRenderer.sprite = back;
         }
-
-        //transform.LookAt(m_goPlayer.transform);
     }
 }
