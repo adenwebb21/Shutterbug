@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnLocations:
   - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &5685069053490345570
 GameObject:
   m_ObjectHideFlags: 0
