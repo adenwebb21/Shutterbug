@@ -1029,6 +1029,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4defa710ca3bdaf4bb98d0c8972a0998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  front: {fileID: 21300000, guid: 37b9e99745ea7ad4c8ef9de66436a944, type: 3}
+  back: {fileID: 21300000, guid: 26773e9bb4a0d6e42835ee75892e530b, type: 3}
 --- !u!4 &641789948 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 4620f3c93dca8c94c9124d8ba443f43e,
@@ -1337,7 +1339,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ed0bf7a45fcdfd548bd14a544b13aafa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 37b9e99745ea7ad4c8ef9de66436a944, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

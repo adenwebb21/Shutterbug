@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class BilboardRotation : MonoBehaviour
 {
+    public Sprite front, back;
+
     private Transform m_parentTransform;
     private Transform m_transform;
+
+    private SpriteRenderer m_childSpriteRenderer;
 
     private GameObject m_goPlayer;
 
@@ -14,6 +18,8 @@ public class BilboardRotation : MonoBehaviour
         m_transform = transform;
         m_parentTransform = m_transform.parent.transform;      
         m_goPlayer = GameObject.FindGameObjectWithTag("Player");
+
+        m_childSpriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update()
@@ -24,12 +30,13 @@ public class BilboardRotation : MonoBehaviour
         {
             //Debug.Log("Player is in front of this game object.");
             m_transform.rotation = Quaternion.LookRotation(m_goPlayer.transform.position - m_parentTransform.position);
-
+            m_childSpriteRenderer.sprite = front;
         }
         else
         {
             //Debug.Log("Player is not in front of this game object.");
             m_transform.rotation = Quaternion.LookRotation(m_transform.position - m_goPlayer.transform.position);
+            m_childSpriteRenderer.sprite = back;
         }
 
         //transform.LookAt(m_goPlayer.transform);
