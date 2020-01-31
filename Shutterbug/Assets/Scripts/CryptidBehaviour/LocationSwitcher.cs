@@ -4,9 +4,22 @@ using UnityEngine;
 
 public class LocationSwitcher : MonoBehaviour
 {
-    public SpawnPoint[] spawnLocations;
+    public List<SpawnPoint> spawnLocations;
+    private GameObject[] m_spawns;
 
     private SpawnPoint m_currentSpawnPoint;
+
+    private void Start()
+    {
+        // do specialised finding here
+
+        m_spawns = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
+        foreach(GameObject _spawn in m_spawns)
+        {
+            spawnLocations.Add(_spawn.GetComponent<SpawnPoint>());
+        }
+    }
 
     private void Update()
     {
@@ -24,7 +37,7 @@ public class LocationSwitcher : MonoBehaviour
     public void Respawn()
     {
         // Choose point based on preference
-        int _randomIndex = Random.Range(0, spawnLocations.Length);
+        int _randomIndex = Random.Range(0, spawnLocations.Count);
         m_currentSpawnPoint = spawnLocations[_randomIndex];
 
         m_currentSpawnPoint.Spawn(gameObject);

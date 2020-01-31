@@ -56,6 +56,7 @@ public class TakePhoto : MonoBehaviour
             if (_screenPoint.z > 0 && _screenPoint.x > 0 && _screenPoint.x < 1 && _screenPoint.y > 0 && _screenPoint.y < 1)
             {
                 _inShot = true;
+                Debug.Log(_object.name);
                 break;
             }
             else
@@ -66,5 +67,14 @@ public class TakePhoto : MonoBehaviour
 
         Debug.Log(_inShot);
         return _inShot;
+    }
+
+    private void Update()
+    {
+        foreach (Transform _object in GameManager.Instance.currentCryptid.GetComponent<CryptidProperties>().bodyParts)
+        {
+            Debug.DrawLine(gameObject.transform.position, _object.position);
+        }
+        
     }
 }

@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get => s_instance; set => s_instance = value; }
     #endregion
 
+    public GameObject cryptidPrefab;
     public GameObject currentCryptid;
-    public Transform initialSpawn;
 
     void Awake()
     {
@@ -23,15 +23,13 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(s_instance.gameObject);
+            //Destroy(s_instance.gameObject);
             s_instance = this;
         }
     }
 
-    private void Start()
+    public void AssignCryptid(GameObject _chosenCryptid)
     {
-        Instantiate(currentCryptid, initialSpawn);
+        cryptidPrefab = _chosenCryptid;
     }
-
-
 }
