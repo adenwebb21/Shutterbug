@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public GameObject currentCryptid;
+    public Transform initialSpawn;
 
     void Awake()
     {
@@ -25,6 +26,11 @@ public class GameManager : MonoBehaviour
             Destroy(s_instance.gameObject);
             s_instance = this;
         }
+    }
+
+    private void Start()
+    {
+        Instantiate(currentCryptid, initialSpawn);
     }
 
 
