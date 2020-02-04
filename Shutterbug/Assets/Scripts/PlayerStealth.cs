@@ -6,7 +6,12 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class PlayerStealth : MonoBehaviour
 {
+    public float stealthValue;
+    public float SprintPenalty = 20;
+
     private Keyboard m_keyboard;
+
+    private bool m_isSneaking = false;
 
     private CharacterController m_characterController;
     private FirstPersonController m_firstPersonController;
@@ -38,10 +43,40 @@ public class PlayerStealth : MonoBehaviour
         if (m_keyboard.leftCtrlKey.wasPressedThisFrame || m_keyboard.cKey.wasPressedThisFrame)
         {
             StartSneaking();
+            m_isSneaking = true;
         }
         else if(m_keyboard.leftCtrlKey.wasReleasedThisFrame || m_keyboard.cKey.wasReleasedThisFrame)
         {
             EndSneaking();
+            m_isSneaking = false;
+        }
+
+        if(m_isSneaking)
+        {
+            stealthValue = 100f - Mathf.Round((m_defaultWalkSpeed / 2) * 10f);
+        }
+        else
+        {
+            if (m_firstPersonController.IsWalking)
+            {
+                stealthValue = 100f - Mathf.Round(m_defaultWalkSpeed * 10f);
+            }
+            else
+            {
+                stealthValue = 100f - Mathf.Round(m_defaultRunSpeed * 10f);
+            }
+        }    
+
+        if(m_firstPersonController.Input == new Vector2(0, 0))
+        {
+            if(m_isSneaking)
+            {
+                stealthValue = 100f;
+            }
+            else
+            {
+                stealthValue = 90f;
+            }           
         }
     }
 
