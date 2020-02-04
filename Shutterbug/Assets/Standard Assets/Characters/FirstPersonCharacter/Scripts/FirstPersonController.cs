@@ -42,6 +42,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        public float WalkSpeed { get => m_WalkSpeed; set => m_WalkSpeed = value; }
+        public float RunSpeed { get => m_RunSpeed; set => m_RunSpeed = value; }
+
         // Use this for initialization
         private void Start()
         {
@@ -215,7 +218,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
 #endif
             // set the desired speed to be walking or running
-            speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
+            speed = m_IsWalking ? WalkSpeed : RunSpeed;
             m_Input = new Vector2(horizontal, vertical);
 
             // normalize input if it exceeds 1 in combined length:
