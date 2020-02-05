@@ -5,4 +5,6 @@ using UnityEngine;
 public class CryptidProperties : MonoBehaviour
 {
     public Transform[] bodyParts;
+
+    public float perception = 75f;
 }

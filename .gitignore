@@ -9,7 +9,7 @@ Shutterbug/[Bb]uild/
 Shutterbug/[Bb]uilds/
 Shutterbug/[Ll]ogs/
 Shutterbug/[Mm]emoryCaptures/
-[Aa]ssets/[Pp]ictures/
+Shutterbug/[Aa]ssets/[Pp]ictures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
