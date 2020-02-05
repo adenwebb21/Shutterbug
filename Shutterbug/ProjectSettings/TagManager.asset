@@ -8,6 +8,8 @@ TagManager:
   - game_manager
   - Game
   - SpawnPoint
+  - Cryptid
+  - Environment
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Cryptid
   - 
   - 
   - 

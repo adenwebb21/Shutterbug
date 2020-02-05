@@ -53,7 +53,7 @@ public class TakePhoto : MonoBehaviour
         {
             Vector3 _screenPoint = gameObject.GetComponent<Camera>().WorldToViewportPoint(_object.position);
 
-            if (_screenPoint.z > 0 && _screenPoint.x > 0 && _screenPoint.x < 1 && _screenPoint.y > 0 && _screenPoint.y < 1)
+            if (_screenPoint.z > 0 && _screenPoint.x > 0 && _screenPoint.x < 1 && _screenPoint.y > 0 && _screenPoint.y < 1 && !EnvironmentInWay(_object))
             {
                 _inShot = true;
                 Debug.Log(_object.name);
@@ -69,12 +69,48 @@ public class TakePhoto : MonoBehaviour
         return _inShot;
     }
 
+    private bool EnvironmentInWay(Transform _bodyPart)
+    {
+        bool _environmentInWay = false;
+
+        RaycastHit _rayHit;
+        Vector3 _directionToPoint = -(gameObject.transform.position - _bodyPart.transform.position).normalized;
+
+        if (Physics.Raycast(transform.position, _directionToPoint, out _rayHit, Mathf.Infinity) && _rayHit.collider.gameObject.tag == "Environment")
+        {
+            _environmentInWay = true;
+        }
+        else
+        {
+            _environmentInWay = false;
+        }
+
+        return _environmentInWay;
+    }
+
     private void Update()
     {
-        foreach (Transform _object in GameManager.Instance.currentCryptid.GetComponent<CryptidProperties>().bodyParts)
-        {
-            Debug.DrawLine(gameObject.transform.position, _object.position);
-        }
+        //foreach (Transform _object in GameManager.Instance.currentCryptid.GetComponent<CryptidProperties>().bodyParts)
+        //{
+        //    RaycastHit _rayHit;
+        //    Vector3 _directionToPoint = -(gameObject.transform.position - _object.transform.position).normalized;
+
+        //    if (Physics.Raycast(transform.position, _directionToPoint, out _rayHit, Mathf.Infinity))
+        //    {
+        //        if(_rayHit.collider.gameObject.tag == "Cryptid")
+        //        {
+        //            Debug.DrawRay(transform.position, _directionToPoint * 1000, Color.green);
+        //        }
+        //        else if(_rayHit.collider.gameObject.tag == "Environment")
+        //        {
+        //            Debug.DrawRay(transform.position, _directionToPoint * 1000, Color.red);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Debug.DrawRay(transform.position, _directionToPoint * 1000, Color.white);
+        //    }
+        //}
         
     }
 }
