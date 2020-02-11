@@ -95,7 +95,7 @@ public class TakePhoto : MonoBehaviour
             RaycastHit _rayHit;
             Vector3 _directionToPoint = -(gameObject.transform.position - _object.transform.position).normalized;
 
-            if (Physics.Raycast(transform.position, _directionToPoint, out _rayHit, Mathf.Infinity))
+            if (Physics.Raycast(transform.position, _directionToPoint, out _rayHit, Vector3.Distance(transform.position, _object.position)))
             {
                 if (_rayHit.collider.gameObject.tag == "Cryptid")
                 {
