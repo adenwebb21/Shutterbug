@@ -123,7 +123,7 @@ MonoBehaviour:
   - {fileID: 2958546698064839356}
   - {fileID: 7139444190500231488}
   - {fileID: 5452379166946903702}
-  perception: 75
+  perception: 45
 --- !u!114 &2731088007266940075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1514cdeea55d35341a7f4c0aa0dad6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_tr: {fileID: 5685069052704964240}
   maxAmbientDetectionRadius: 25
 --- !u!1 &5685069053490345570
 GameObject:
@@ -185,6 +186,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -267,6 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   front: {fileID: 21300000, guid: 37b9e99745ea7ad4c8ef9de66436a944, type: 3}
   back: {fileID: 21300000, guid: 26773e9bb4a0d6e42835ee75892e530b, type: 3}
+  lookingAtPlayer: 0
 --- !u!95 &8828662354011313660
 Animator:
   serializedVersion: 3

@@ -6,12 +6,15 @@ public class LocationSwitcher : MonoBehaviour
 {
     public List<SpawnPoint> spawnLocations;
     private GameObject[] m_spawns;
-
+    private CryptidProperties m_propertyBlock;
     private SpawnPoint m_currentSpawnPoint;
+
+    private int m_currentIndex = 0;
 
     private void Start()
     {
         // do specialised finding here
+        m_propertyBlock = gameObject.GetComponent<CryptidProperties>();
 
         m_spawns = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
@@ -36,16 +39,29 @@ public class LocationSwitcher : MonoBehaviour
     [ContextMenu("Respawn")]
     public void Respawn()
     {
-        // Choose point based on preference
-        int _randomIndex = Random.Range(0, spawnLocations.Count);
-        m_currentSpawnPoint = spawnLocations[_randomIndex];
+        m_propertyBlock.currentState = CryptidProperties.cryptidState.MOVING;
 
+        // Choose point based on preference
+        int _randomIndex = 0; 
+
+        while(_randomIndex == m_currentIndex)
+        {
+            _randomIndex = Random.Range(0, spawnLocations.Count);       
+        }
+
+        m_currentIndex = _randomIndex;
+
+        m_currentSpawnPoint = spawnLocations[m_currentIndex];
         m_currentSpawnPoint.Spawn(gameObject);
+        m_propertyBlock.currentState = CryptidProperties.cryptidState.SEARCHING;
     }
 
     [ContextMenu("Leave")]
     public void Leave()
     {
+        m_propertyBlock.currentState = CryptidProperties.cryptidState.MOVING;
+
         m_currentSpawnPoint.Leave(gameObject);
+        Invoke("Respawn", 1.5f);
     }
 }

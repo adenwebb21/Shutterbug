@@ -13,6 +13,8 @@ public class BilboardRotation : MonoBehaviour
 
     private GameObject m_goPlayer;
 
+    public bool lookingAtPlayer = false;
+
     private void Start()
     {
         m_transform = transform;
@@ -29,13 +31,17 @@ public class BilboardRotation : MonoBehaviour
         if (Vector3.Dot(_vectorToTarget, m_parentTransform.forward) > 0)
         {
             //Debug.Log("Player is in front of this game object.");
+            lookingAtPlayer = true;
             m_transform.rotation = Quaternion.LookRotation(m_goPlayer.transform.position - m_parentTransform.position);
+            m_transform.rotation = new Quaternion(0f, transform.rotation.y, 0f, transform.rotation.w);
             m_childSpriteRenderer.sprite = front;
         }
         else
         {
             //Debug.Log("Player is not in front of this game object.");
+            lookingAtPlayer = false;
             m_transform.rotation = Quaternion.LookRotation(m_transform.position - m_goPlayer.transform.position);
+            m_transform.rotation = new Quaternion(0f, transform.rotation.y, 0f, transform.rotation.w);
             m_childSpriteRenderer.sprite = back;
         }
     }
