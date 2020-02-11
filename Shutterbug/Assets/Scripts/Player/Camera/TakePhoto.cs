@@ -76,7 +76,7 @@ public class TakePhoto : MonoBehaviour
         RaycastHit _rayHit;
         Vector3 _directionToPoint = -(gameObject.transform.position - _bodyPart.transform.position).normalized;
 
-        if (Physics.Raycast(transform.position, _directionToPoint, out _rayHit, Mathf.Infinity) && _rayHit.collider.gameObject.tag == "Environment")
+        if (Physics.Raycast(transform.position, _directionToPoint, out _rayHit, Vector3.Distance(transform.position, _bodyPart.position)) && _rayHit.collider.gameObject.tag == "Environment")
         {
             _environmentInWay = true;
         }
@@ -90,27 +90,27 @@ public class TakePhoto : MonoBehaviour
 
     private void Update()
     {
-        //foreach (Transform _object in GameManager.Instance.currentCryptid.GetComponent<CryptidProperties>().bodyParts)
-        //{
-        //    RaycastHit _rayHit;
-        //    Vector3 _directionToPoint = -(gameObject.transform.position - _object.transform.position).normalized;
+        foreach (Transform _object in GameManager.Instance.currentCryptid.GetComponent<CryptidProperties>().bodyParts)
+        {
+            RaycastHit _rayHit;
+            Vector3 _directionToPoint = -(gameObject.transform.position - _object.transform.position).normalized;
 
-        //    if (Physics.Raycast(transform.position, _directionToPoint, out _rayHit, Mathf.Infinity))
-        //    {
-        //        if(_rayHit.collider.gameObject.tag == "Cryptid")
-        //        {
-        //            Debug.DrawRay(transform.position, _directionToPoint * 1000, Color.green);
-        //        }
-        //        else if(_rayHit.collider.gameObject.tag == "Environment")
-        //        {
-        //            Debug.DrawRay(transform.position, _directionToPoint * 1000, Color.red);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Debug.DrawRay(transform.position, _directionToPoint * 1000, Color.white);
-        //    }
-        //}
-        
+            if (Physics.Raycast(transform.position, _directionToPoint, out _rayHit, Mathf.Infinity))
+            {
+                if (_rayHit.collider.gameObject.tag == "Cryptid")
+                {
+                    Debug.DrawRay(transform.position, _directionToPoint * 1000, Color.green);
+                }
+                else if (_rayHit.collider.gameObject.tag == "Environment")
+                {
+                    Debug.DrawRay(transform.position, _directionToPoint * 1000, Color.red);
+                }
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, _directionToPoint * 1000, Color.white);
+            }
+        }
+
     }
 }
