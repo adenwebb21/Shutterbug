@@ -29,6 +29,12 @@ public class CryptidDetection : MonoBehaviour
 
     private void Update()
     {
+        // check for if detected, increase detection timer based on scalar value above perception
+        if(m_hasDetectedPlayer)
+        {
+
+        }
+
         int _layerMask = 1 << 9;
         Collider[] _hitColliders = Physics.OverlapSphere(m_tr.position, maxAmbientDetectionRadius, _layerMask);
 
@@ -64,7 +70,7 @@ public class CryptidDetection : MonoBehaviour
         if(m_propertyBlock.currentState == CryptidProperties.cryptidState.SEARCHING && _hitColliders.Length != 0 && PlayerDetected(_hitColliders[0], m_hasLineOfSight))
         {
             m_hasDetectedPlayer = true;
-            m_mover.Leave();
+            //m_mover.Leave();
             
         }
         else if(_hitColliders.Length != 0 && !PlayerDetected(_hitColliders[0], m_hasLineOfSight))
@@ -103,6 +109,8 @@ public class CryptidDetection : MonoBehaviour
         {
             _currentPlayerStealthValue = _currentPlayerStealthValue * 3;
         }
+
+        _currentPlayerStealthValue = Mathf.Clamp(_currentPlayerStealthValue, 0f, 100f);
 
         _playerCollider.gameObject.GetComponent<PlayerStealth>().stealthValue = _currentPlayerStealthValue;
 
