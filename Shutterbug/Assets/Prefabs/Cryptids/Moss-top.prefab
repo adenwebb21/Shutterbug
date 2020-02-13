@@ -124,6 +124,7 @@ MonoBehaviour:
   - {fileID: 7139444190500231488}
   - {fileID: 5452379166946903702}
   perception: 45
+  currentState: 0
 --- !u!114 &2731088007266940075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_tr: {fileID: 5685069052704964240}
   maxAmbientDetectionRadius: 25
+  m_detectionThreshold: 10
 --- !u!1 &5685069053490345570
 GameObject:
   m_ObjectHideFlags: 0

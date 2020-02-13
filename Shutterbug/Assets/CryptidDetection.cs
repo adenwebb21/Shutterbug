@@ -5,6 +5,7 @@ using UnityEngine;
 public class CryptidDetection : MonoBehaviour
 {
     private CryptidProperties m_propertyBlock;
+    private GameObject m_player;
 
     private bool m_hasDetectedPlayer;
     private BilboardRotation m_rotator;
@@ -20,21 +21,19 @@ public class CryptidDetection : MonoBehaviour
 
     public float maxAmbientDetectionRadius = 10f;
 
+    private float m_detectionTimer = 0f;
+    public float m_detectionThreshold = 4f;
+
     private void Start()
     {
         m_propertyBlock = gameObject.GetComponent<CryptidProperties>();
         m_mover = gameObject.GetComponent<LocationSwitcher>();
         m_rotator = gameObject.GetComponentInChildren<BilboardRotation>();
+        m_player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
     {
-        // check for if detected, increase detection timer based on scalar value above perception
-        if(m_hasDetectedPlayer)
-        {
-
-        }
-
         int _layerMask = 1 << 9;
         Collider[] _hitColliders = Physics.OverlapSphere(m_tr.position, maxAmbientDetectionRadius, _layerMask);
 
@@ -77,6 +76,22 @@ public class CryptidDetection : MonoBehaviour
         {
             m_hasDetectedPlayer = false;
         }
+
+        // check for if detected, increase detection timer based on scalar value above perception
+        if (m_detectionTimer <= m_detectionThreshold && m_hasDetectedPlayer)
+        {
+            float _scalar = 1 - (m_player.GetComponent<PlayerStealth>().stealthValue / m_propertyBlock.perception);
+            m_detectionTimer += Time.deltaTime * _scalar;
+
+            Debug.Log("Player detected " + _scalar + " is the scalar value " + m_detectionTimer + " is the current detection timer");
+        }
+        else if (m_detectionTimer > 0f && !m_hasDetectedPlayer)
+        {
+            float _scalar = m_propertyBlock.perception / m_player.GetComponent<PlayerStealth>().stealthValue;
+            m_detectionTimer -= Time.deltaTime * _scalar;
+
+            Debug.Log("Player detected " + _scalar + " is the scalar value " + m_detectionTimer + " is the current detection timer");
+        }
     }
 
     private bool EnvironmentInWay(Transform _player)
@@ -116,12 +131,12 @@ public class CryptidDetection : MonoBehaviour
 
         if (_currentPlayerStealthValue < m_propertyBlock.perception)
         {       
-            Debug.Log("Seen!!!!");
+            //Debug.Log("Seen!!!!");
             return true;
         }
         else
         {
-            Debug.Log("Hidden..");
+            //Debug.Log("Hidden..");
             return false;
         }   
     }
