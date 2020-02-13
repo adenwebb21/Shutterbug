@@ -137,9 +137,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1514cdeea55d35341a7f4c0aa0dad6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiDetection: {fileID: 0}
   m_tr: {fileID: 5685069052704964240}
-  maxAmbientDetectionRadius: 25
-  m_detectionThreshold: 10
+  maxAmbientDetectionRadius: 50
+  m_detectionThreshold: 2
 --- !u!1 &5685069053490345570
 GameObject:
   m_ObjectHideFlags: 0

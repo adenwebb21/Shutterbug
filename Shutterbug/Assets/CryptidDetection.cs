@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class CryptidDetection : MonoBehaviour
 {
+    // remove
+    public Image uiDetection;
+
     private CryptidProperties m_propertyBlock;
     private GameObject m_player;
 
@@ -22,7 +26,7 @@ public class CryptidDetection : MonoBehaviour
     public float maxAmbientDetectionRadius = 10f;
 
     private float m_detectionTimer = 0f;
-    public float m_detectionThreshold = 4f;
+    public float m_detectionThreshold = 2f;
 
     private void Start()
     {
@@ -30,6 +34,8 @@ public class CryptidDetection : MonoBehaviour
         m_mover = gameObject.GetComponent<LocationSwitcher>();
         m_rotator = gameObject.GetComponentInChildren<BilboardRotation>();
         m_player = GameObject.FindGameObjectWithTag("Player");
+
+        uiDetection = GameObject.FindGameObjectWithTag("DetectionUI").GetComponent<Image>();
     }
 
     private void Update()
@@ -82,15 +88,13 @@ public class CryptidDetection : MonoBehaviour
         {
             float _scalar = 1 - (m_player.GetComponent<PlayerStealth>().stealthValue / m_propertyBlock.perception);
             m_detectionTimer += Time.deltaTime * _scalar;
-
-            Debug.Log("Player detected " + _scalar + " is the scalar value " + m_detectionTimer + " is the current detection timer");
+            uiDetection.fillAmount = m_detectionTimer / 2f;
         }
         else if (m_detectionTimer > 0f && !m_hasDetectedPlayer)
         {
             float _scalar = m_propertyBlock.perception / m_player.GetComponent<PlayerStealth>().stealthValue;
             m_detectionTimer -= Time.deltaTime * _scalar;
-
-            Debug.Log("Player detected " + _scalar + " is the scalar value " + m_detectionTimer + " is the current detection timer");
+            uiDetection.fillAmount = m_detectionTimer / 2f;
         }
     }
 
