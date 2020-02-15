@@ -123,7 +123,7 @@ MonoBehaviour:
   - {fileID: 2958546698064839356}
   - {fileID: 7139444190500231488}
   - {fileID: 5452379166946903702}
-  perception: 45
+  perception: 40
   currentState: 0
 --- !u!114 &2731088007266940075
 MonoBehaviour:
@@ -137,7 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1514cdeea55d35341a7f4c0aa0dad6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiDetection: {fileID: 0}
   m_tr: {fileID: 5685069052704964240}
   maxAmbientDetectionRadius: 50
   m_detectionThreshold: 2
