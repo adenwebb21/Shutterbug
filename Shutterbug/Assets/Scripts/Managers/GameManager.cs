@@ -14,6 +14,11 @@ public class GameManager : MonoBehaviour
     public GameObject cryptidPrefab;
     public GameObject currentCryptid;
 
+    public List<Photograph> currentPhotographs;
+
+    public int photoCap = 5;
+    private int m_currentPhotoCount = 0;
+
     public LevelLoader levelLoader;
 
     void Awake()
@@ -33,6 +38,25 @@ public class GameManager : MonoBehaviour
     public void AssignCryptid(GameObject _chosenCryptid)
     {
         cryptidPrefab = _chosenCryptid;
+    }
+
+    public void TakePhoto()
+    {
+        if (m_currentPhotoCount < photoCap)
+        {
+            m_currentPhotoCount++;
+            UIManager.Instance.UpdatePictureCount(m_currentPhotoCount);
+        }
+        else
+        {
+            Debug.Log("Out of film");
+        }
+    }
+
+    public void ResetPhotos()
+    {
+        m_currentPhotoCount = 0;
+        currentPhotographs.Clear();
     }
 
     private void Update()

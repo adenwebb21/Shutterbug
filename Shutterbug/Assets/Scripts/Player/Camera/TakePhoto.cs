@@ -41,8 +41,8 @@ public class TakePhoto : MonoBehaviour
         _tempPhotograph.Image = _newPhoto;
         _tempPhotograph.CryptidInPicture = IsVisible(GameManager.Instance.currentCryptid);
 
-        PhotoManager.Instance.currentPhotographs.Add(_tempPhotograph);
-        PhotoManager.Instance.TakePhoto();
+        GameManager.Instance.currentPhotographs.Add(_tempPhotograph);
+        GameManager.Instance.TakePhoto();
     }
 
     private bool IsVisible(GameObject _cryptid)
