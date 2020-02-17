@@ -11,6 +11,8 @@ TagManager:
   - Cryptid
   - Environment
   - DetectionUI
+  - Manager
+  - LevelLoader
   layers:
   - Default
   - TransparentFX

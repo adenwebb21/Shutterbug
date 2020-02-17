@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
     #region Singleton
     private static GameManager s_instance;
 
@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject cryptidPrefab;
     public GameObject currentCryptid;
+
+    public LevelLoader levelLoader;
 
     void Awake()
     {
@@ -32,4 +34,19 @@ public class GameManager : MonoBehaviour
     {
         cryptidPrefab = _chosenCryptid;
     }
+
+    private void Update()
+    {
+        if(SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            levelLoader.LoadHandInScreen();
+        }
+    }
 }
+
