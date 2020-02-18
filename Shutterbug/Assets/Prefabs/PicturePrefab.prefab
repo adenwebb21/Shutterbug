@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2344359230437221192}
   - component: {fileID: 2344359230437221195}
   - component: {fileID: 7487682737240096751}
-  - component: {fileID: 802827534628320598}
   - component: {fileID: -298489417901820822}
+  - component: {fileID: 7382825198220776513}
+  - component: {fileID: 2508055008137394536}
   m_Layer: 10
   m_Name: PicturePrefab
   m_TagString: PhotoObject
@@ -92,27 +93,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2344359230437221194}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 5
+  m_Drag: 10
+  m_AngularDrag: 20
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 48
+  m_Constraints: 52
   m_CollisionDetection: 3
---- !u!65 &802827534628320598
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2344359230437221194}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 12.000006, y: 8.000002, z: 0.3}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-298489417901820822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,3 +113,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58650e15a2607e44daa0f150e0061d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &7382825198220776513
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2344359230437221194}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.999999, y: 8, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2508055008137394536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2344359230437221194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93abb0182fbf60741beb6265adc0389d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceStrength: 200

@@ -46,9 +46,9 @@ public class AssignPictures : MonoBehaviour
                     _tempPhoto.GetComponent<SpriteRenderer>().sprite = defaultPhoto;
                 }
 
-                _tempPhoto.GetComponent<Rigidbody>().AddTorque(m_rotationForce * Random.Range(-2f, 2f), ForceMode.Impulse);
+                _tempPhoto.GetComponent<Rigidbody>().AddTorque(m_rotationForce * Random.Range(-100f, 100f), ForceMode.Impulse);
                 m_forceVector.z = Random.Range(-0.25f, 0.25f);
-                _tempPhoto.GetComponent<Rigidbody>().AddForce(m_forceVector * Random.Range(20f, 25f), ForceMode.Impulse);
+                _tempPhoto.GetComponent<Rigidbody>().AddForce(m_forceVector * Random.Range(400f, 550f), ForceMode.Impulse);
             }
         }
         else
@@ -68,9 +68,9 @@ public class AssignPictures : MonoBehaviour
                     _tempPhoto.GetComponent<SpriteRenderer>().sprite = defaultPhoto;
                 }
 
-                _tempPhoto.GetComponent<Rigidbody>().AddTorque(m_rotationForce * Random.Range(-10f, 10f), ForceMode.Impulse);
+                _tempPhoto.GetComponent<Rigidbody>().AddTorque(m_rotationForce * Random.Range(-100f, 100f), ForceMode.Impulse);
                 m_forceVector.z = Random.Range(-0.25f, 0.25f);
-                _tempPhoto.GetComponent<Rigidbody>().AddForce(m_forceVector * Random.Range(20f, 35f), ForceMode.Impulse);
+                _tempPhoto.GetComponent<Rigidbody>().AddForce(m_forceVector * Random.Range(400f, 550f), ForceMode.Impulse);
             }
         }
 

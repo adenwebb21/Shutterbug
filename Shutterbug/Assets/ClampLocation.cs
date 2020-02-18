@@ -4,13 +4,38 @@ using UnityEngine;
 
 public class ClampLocation : MonoBehaviour
 {
-    private void FixedUpdate()
-    {
-        Vector3 _tempLocation;
-        _tempLocation = transform.position;
-        _tempLocation.x = Mathf.Clamp(_tempLocation.x, -2f, 6f);
-        _tempLocation.z = Mathf.Clamp(_tempLocation.z, 4f, 19.5f);
+    private Rigidbody m_rigidBody;
+    private Transform m_transform;
 
-        transform.position = _tempLocation;
+    public float forceStrength;
+
+    private void Start()
+    {
+        m_transform = transform;
+        m_rigidBody = gameObject.GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        if(m_transform.localPosition.x > 5.2f)
+        {
+            m_rigidBody.AddForce(new Vector3(0, 0, 1f) * forceStrength);
+        }
+        else if (m_transform.localPosition.x < -7f)
+        {
+            m_rigidBody.AddForce(new Vector3(0, 0, -1f) * forceStrength);
+        }
+        else if (m_transform.localPosition.z > 22f)
+        {
+            m_rigidBody.AddForce(new Vector3(-1f, 0, 0) * forceStrength);
+        }
+        else if (m_transform.localPosition.z < 1f)
+        {
+            m_rigidBody.AddForce(new Vector3(1f, 0, 0) * forceStrength);
+        }
+        else
+        {
+            m_rigidBody.AddForce(new Vector3(0, 0, 0) * forceStrength);
+        }
     }
 }
