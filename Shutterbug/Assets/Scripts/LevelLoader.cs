@@ -11,7 +11,10 @@ public class LevelLoader : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.levelLoader = this.GetComponent<LevelLoader>();
+        if(GameManager.Instance)
+        {
+            GameManager.Instance.levelLoader = this.GetComponent<LevelLoader>();
+        }    
     }
 
     public void LoadNextLevel()

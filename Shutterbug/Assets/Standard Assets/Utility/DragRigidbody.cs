@@ -82,7 +82,6 @@ namespace UnityStandardAssets.Utility
             }
         }
 
-
         private Camera FindCamera()
         {
             if (GetComponent<Camera>())

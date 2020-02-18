@@ -11,7 +11,10 @@ public class TakePhoto : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Capture();
+            if(GameManager.Instance.currentPhotographs.Count < GameManager.Instance.photoCap)
+            {
+                Capture();
+            }          
         }
     }
 
