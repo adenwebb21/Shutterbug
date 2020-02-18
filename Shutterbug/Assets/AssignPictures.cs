@@ -4,22 +4,14 @@ using UnityEngine;
 
 public class AssignPictures : MonoBehaviour
 {
-    public GameObject[] physicalPhotos;
+    public GameObject photoPrefab;
 
     private void Start()
     {
-        for (int i = 0; i < physicalPhotos.Length; i++)
+        for (int i = 0; i < GameManager.Instance.currentPhotographs.Count; i++)
         {
-            if(GameManager.Instance.currentPhotographs[i] != null)
-            {
-                physicalPhotos[i].GetComponent<SpriteRenderer>().sprite = GameManager.Instance.currentPhotographs[i].Image;
-            }
-            else
-            {
-                Destroy(physicalPhotos[i]);
-            }
+            GameObject _tempPhoto = Instantiate(photoPrefab);
+            photoPrefab.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.currentPhotographs[i].Image;
         }
-
-        // probably want to set up so that I instantiate photo images
     }
 }
