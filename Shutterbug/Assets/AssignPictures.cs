@@ -39,11 +39,12 @@ public class AssignPictures : MonoBehaviour
 
                 try
                 {
-                    _tempPhoto.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.currentPhotographs[i].Image;
+                    _tempPhoto.GetComponentInChildren<SpriteRenderer>().sprite = GameManager.Instance.currentPhotographs[i].Image;
+                    _tempPhoto.GetComponent<PhotoData>().photoData = GameManager.Instance.currentPhotographs[i];
                 }
                 catch
                 {
-                    _tempPhoto.GetComponent<SpriteRenderer>().sprite = defaultPhoto;
+                    _tempPhoto.GetComponentInChildren<SpriteRenderer>().sprite = defaultPhoto;
                 }
 
                 _tempPhoto.GetComponent<Rigidbody>().AddTorque(m_rotationForce * Random.Range(-100f, 100f), ForceMode.Impulse);
@@ -61,11 +62,12 @@ public class AssignPictures : MonoBehaviour
 
                 try
                 {
-                    _tempPhoto.GetComponent<SpriteRenderer>().sprite = GameManager.Instance.currentPhotographs[i].Image;
+                    _tempPhoto.GetComponentInChildren<SpriteRenderer>().sprite = GameManager.Instance.currentPhotographs[i].Image;
+                    _tempPhoto.GetComponent<PhotoData>().photoData = GameManager.Instance.currentPhotographs[i];
                 }
                 catch
                 {
-                    _tempPhoto.GetComponent<SpriteRenderer>().sprite = defaultPhoto;
+                    _tempPhoto.GetComponentInChildren<SpriteRenderer>().sprite = defaultPhoto;
                 }
 
                 _tempPhoto.GetComponent<Rigidbody>().AddTorque(m_rotationForce * Random.Range(-100f, 100f), ForceMode.Impulse);
