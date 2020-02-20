@@ -5,6 +5,7 @@ using UnityEngine;
 public class SubmitUIhandler : MonoBehaviour
 {
     public GameObject submitButton;
+    public GameObject scoringUIElement, scoringPhotoElement;
 
     public void SubmitButtonOff()
     {
@@ -14,5 +15,10 @@ public class SubmitUIhandler : MonoBehaviour
     public void SubmitButtonOn()
     {
         submitButton.SetActive(true);
+    }
+
+    public void StartScoring()
+    {
+        scoringUIElement.SetActive(true);
     }
 }
