@@ -829,7 +829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23aed7fb0b910ab4eb50a656aa28666a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bestPhotoImage: {fileID: 1916863714}
+  bestPhotoImage: {fileID: 1462134828}
   bestPhotoScore: {fileID: 175397169}
   secondaryCanvas: {fileID: 1903237411}
 --- !u!1 &1248255324
@@ -1796,6 +1796,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1690500619768177579, guid: 20d5a1f9875d2474f9616d2caa1c233d,
+        type: 3}
+      propertyPath: bestPhoto
+      value: 
+      objectReference: {fileID: 11400000, guid: 1a15c74dd4f682c4fb8f0a942c281fa1,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20d5a1f9875d2474f9616d2caa1c233d, type: 3}
 --- !u!114 &1843524548 stripped
