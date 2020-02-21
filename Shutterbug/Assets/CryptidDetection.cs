@@ -212,12 +212,10 @@ public class CryptidDetection : MonoBehaviour
         if(m_distanceModifier < 0.8f)
         {
             m_propertyBlock.currentPerception = m_propertyBlock.currentPerception * m_distanceModifier;
-            Debug.Log( m_distanceModifier);
         }
         else
         {
             m_propertyBlock.currentPerception = m_propertyBlock.currentPerception * (1 + (m_distanceModifier * 2) - 0.8f);
-            Debug.Log(1 + m_distanceModifier - 0.8f);
         }
         
         if (_currentPlayerStealthValue < m_propertyBlock.currentPerception)

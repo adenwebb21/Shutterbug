@@ -27,8 +27,6 @@ public class SubmitPhotos : MonoBehaviour
     {
         Collider[] _hitColliders = Physics.OverlapBox(gameObject.transform.position, new Vector3(9.5f, 1.5f, 2f), Quaternion.identity, layerMask);
 
-        Debug.Log(_hitColliders.Length);
-
         if(_hitColliders.Length == 3)
         {
             readyForHandIn.Raise();

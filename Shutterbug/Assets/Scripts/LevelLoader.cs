@@ -36,6 +36,11 @@ public class LevelLoader : MonoBehaviour
         }
     }
 
+    public void LoadMainMenu()
+    {
+        StartCoroutine(LoadLevel(0));
+    }
+
     IEnumerator LoadLevel(int _levelIndex)
     {
         transition.SetTrigger("Start");

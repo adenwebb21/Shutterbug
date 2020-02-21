@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
 
     public List<Photograph> currentPhotographs;
 
+    public Photograph bestPhoto;
+    public int bestPhotoScore;
+
     public int photoCap = 5;
     private int m_currentPhotoCount = 0;
 
@@ -67,7 +70,13 @@ public class GameManager : MonoBehaviour
             Cursor.visible = true;
         }
 
-        if(Input.GetKeyDown(KeyCode.H))
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
         {
             levelLoader.LoadHandInScreen();
         }

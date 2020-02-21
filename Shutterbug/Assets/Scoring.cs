@@ -9,7 +9,9 @@ public class Scoring : MonoBehaviour
     public GameObject[] chosenPhotos;
     public GameObject currentPhotoObject;
 
-    public GameObject scoreValue, modifier1, modifier2, modifier3, nextPhoto;
+    private GameObject m_bestPhoto;
+
+    public GameObject scoreValue, modifier1, modifier2, modifier3, nextPhoto, finishButton;
 
     private int m_currentPhotoIndex = -1;
     public int baseScore = 50;
@@ -25,12 +27,31 @@ public class Scoring : MonoBehaviour
         m_randomAdditions = new string[] { "Ghost in frame: ", "Faced camera in the right direction: ", "Nice exposure: ", "Nailed the focus: "};
     }
 
+    public void ReturnToMenu()
+    {
+        int _highestScore = 0;
+
+        for (int i = 0; i < m_scores.Length; i++)
+        {
+            if (m_scores[i] > _highestScore)
+            {
+                _highestScore = m_scores[i];
+                m_bestPhoto = chosenPhotos[i];
+            }
+        }
+
+        GameManager.Instance.bestPhotoScore = _highestScore;
+        GameManager.Instance.bestPhoto = m_bestPhoto.GetComponent<PhotoData>().photoData;
+        GameManager.Instance.levelLoader.LoadMainMenu();     
+    }
+
     public void ResetValues()
     {
         scoreValue.SetActive(false);
         modifier1.SetActive(false);
         modifier2.SetActive(false);
         modifier3.SetActive(false);
+        finishButton.SetActive(false);
         nextPhoto.SetActive(false);
 
         m_scores[m_currentPhotoIndex] = m_currentScore;
@@ -41,7 +62,11 @@ public class Scoring : MonoBehaviour
     {
         currentPhotoObject.GetComponent<Animator>().Play("photo_out");
 
-        Invoke("ScoreNextPhoto", 1f);
+        if(m_currentPhotoIndex != 2)
+        {
+            Invoke("ScoreNextPhoto", 1f);
+        }
+        
     }
 
     public void ScoreNextPhoto()
@@ -99,6 +124,13 @@ public class Scoring : MonoBehaviour
 
     private void NextButton()
     {
-        nextPhoto.SetActive(true);
+        if(m_currentPhotoIndex == chosenPhotos.Length - 1)
+        {
+            finishButton.SetActive(true);
+        }
+        else
+        {
+            nextPhoto.SetActive(true);
+        }     
     }
 }
