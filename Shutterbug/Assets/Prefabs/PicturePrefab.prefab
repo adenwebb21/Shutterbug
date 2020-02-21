@@ -183,3 +183,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f20badd98af3e74b8463c80f53cb197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  photoData: {fileID: 11400000, guid: 63320dde3981e384089d45b0847806e8, type: 2}

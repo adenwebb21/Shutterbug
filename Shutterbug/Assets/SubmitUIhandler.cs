@@ -5,7 +5,7 @@ using UnityEngine;
 public class SubmitUIhandler : MonoBehaviour
 {
     public GameObject submitButton;
-    public GameObject scoringUIElement, scoringPhotoElement;
+    public GameObject scoringUIElement;
 
     public void SubmitButtonOff()
     {

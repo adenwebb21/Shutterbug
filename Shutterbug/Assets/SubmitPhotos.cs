@@ -9,6 +9,8 @@ public class SubmitPhotos : MonoBehaviour
     public GameEvent invalidHandIn;
     public GameEvent startScoring;
 
+    public Scoring scoringScript;
+
     public Transform target;
 
     private GameObject[] m_chosenPhotographs = new GameObject[3];
@@ -62,6 +64,8 @@ public class SubmitPhotos : MonoBehaviour
         {
             _photo.SetActive(false);
         }
+        scoringScript.chosenPhotos = m_chosenPhotographs;
         startScoring.Raise();
+        scoringScript.ScoreNextPhoto();        
     }
 }
