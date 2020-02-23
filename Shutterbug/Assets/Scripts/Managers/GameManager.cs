@@ -24,16 +24,16 @@ public class GameManager : MonoBehaviour
 
     public LevelLoader levelLoader;
 
+    public GameEvent enoughPhotos;
+
     void Awake()
     {
-        //Singleton Implementation
-        if (s_instance == null)
+        if (s_instance != null && s_instance != this)
         {
-            s_instance = this;
+            Destroy(this.gameObject);
         }
         else
         {
-            //Destroy(s_instance.gameObject);
             s_instance = this;
         }
     }
@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour
         {
             m_currentPhotoCount++;
             UIManager.Instance.UpdatePictureCount(m_currentPhotoCount);
+
+            if(m_currentPhotoCount == photoCap)
+            {
+                enoughPhotos.Raise();
+            }
         }
         else
         {

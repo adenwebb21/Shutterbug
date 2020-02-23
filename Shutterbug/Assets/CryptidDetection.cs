@@ -23,7 +23,7 @@ public class CryptidDetection : MonoBehaviour
     public float maxAmbientDetectionRadius = 10f;
 
     private float m_detectionTimer = 0f;
-    public float m_detectionThreshold = 2f;
+    public float m_detectionThreshold = 1f;
 
     private void Start()
     {
@@ -202,20 +202,24 @@ public class CryptidDetection : MonoBehaviour
 
         if (!_lineOfSight)
         {
-            m_propertyBlock.currentPerception = m_propertyBlock.defaultPerception / 2;
+            m_propertyBlock.currentPerception = m_propertyBlock.defaultPerception / 4;
         }
 
         //_currentPlayerStealthValue = Mathf.Clamp(_currentPlayerStealthValue, 0f, 100f);
 
         //m_player.GetComponent<PlayerStealth>().stealthValue = _currentPlayerStealthValue;
 
-        if(m_distanceModifier < 0.8f)
+        if(m_distanceModifier < 0.5f)
         {
             m_propertyBlock.currentPerception = m_propertyBlock.currentPerception * m_distanceModifier;
         }
+        else if(m_distanceModifier > 0.8f)
+        {
+            m_propertyBlock.currentPerception = m_propertyBlock.currentPerception * (1 + (m_distanceModifier * 4) - 0.5f);
+        }
         else
         {
-            m_propertyBlock.currentPerception = m_propertyBlock.currentPerception * (1 + (m_distanceModifier * 2) - 0.8f);
+            m_propertyBlock.currentPerception = m_propertyBlock.currentPerception * (1 + (m_distanceModifier * 2) - 0.5f);
         }
         
         if (_currentPlayerStealthValue < m_propertyBlock.currentPerception)
