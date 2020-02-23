@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PhotoManager : MonoBehaviour
 {
-    public List<Photograph> currentPhotographs;
-
     private static PhotoManager s_instance;
 
     public static PhotoManager Instance { get => s_instance; set => s_instance = value; }
@@ -23,4 +21,6 @@ public class PhotoManager : MonoBehaviour
             s_instance = this;
         }
     }
+
+    
 }

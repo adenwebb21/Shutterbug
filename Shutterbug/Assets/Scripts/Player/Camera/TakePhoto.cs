@@ -11,7 +11,10 @@ public class TakePhoto : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Capture();
+            if(GameManager.Instance.currentPhotographs.Count < GameManager.Instance.photoCap)
+            {
+                Capture();
+            }          
         }
     }
 
@@ -41,8 +44,8 @@ public class TakePhoto : MonoBehaviour
         _tempPhotograph.Image = _newPhoto;
         _tempPhotograph.CryptidInPicture = IsVisible(GameManager.Instance.currentCryptid);
 
-        PhotoManager.Instance.currentPhotographs.Add(_tempPhotograph);
-
+        GameManager.Instance.currentPhotographs.Add(_tempPhotograph);
+        GameManager.Instance.TakePhoto();
     }
 
     private bool IsVisible(GameObject _cryptid)

@@ -22,6 +22,8 @@ public class LocationSwitcher : MonoBehaviour
         {
             spawnLocations.Add(_spawn.GetComponent<SpawnPoint>());
         }
+
+        Respawn();
     }
 
     private void Update()

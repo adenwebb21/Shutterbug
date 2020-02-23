@@ -51,39 +51,24 @@ public class PlayerStealth : MonoBehaviour
             m_isSneaking = false;
         }
 
+        stealthValue = 40f;
+
         if(m_isSneaking)
         {
-            stealthValue = CalculateStealthValue(Mathf.Round((m_defaultWalkSpeed / 2) * 10f));
+            stealthValue = stealthValue * 1.5f;
         }
         else
         {
-            if (m_firstPersonController.IsWalking)
+            if (!m_firstPersonController.IsWalking)
             {
-                stealthValue = CalculateStealthValue(Mathf.Round(m_defaultWalkSpeed * 10f));
-            }
-            else
-            {
-                stealthValue = CalculateStealthValue(Mathf.Round(m_defaultRunSpeed * 10f));
+                stealthValue = stealthValue / 2f;
             }
         }    
 
-        if(m_firstPersonController.Input == new Vector2(0, 0))
-        {
-            if(m_isSneaking)
-            {
-                stealthValue = 100f;
-            }
-            else
-            {
-                stealthValue = 90f;
-            }           
-        }
-    }
-
-    private float CalculateStealthValue(float _modifier)
-    {
-        float _stealthValue = 100f - _modifier;
-        return _stealthValue;
+        //if(m_firstPersonController.Input == new Vector2(0, 0))
+        //{
+        //    stealthValue = stealthValue * 1.5f;         
+        //}
     }
 
     public void StartSneaking()

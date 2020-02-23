@@ -6,7 +6,8 @@ public class CryptidProperties : MonoBehaviour
 {
     public Transform[] bodyParts;
 
-    public float perception = 55f;
+    public float currentPerception = 55f;
+    public float defaultPerception = 55f;
 
     public enum cryptidState {MOVING, SEARCHING};
 

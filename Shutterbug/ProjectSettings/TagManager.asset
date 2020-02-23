@@ -10,6 +10,13 @@ TagManager:
   - SpawnPoint
   - Cryptid
   - Environment
+  - DetectionUI
+  - Manager
+  - LevelLoader
+  - PhotoObject
+  - Table
+  - Fire
+  - MenuBook
   layers:
   - Default
   - TransparentFX
@@ -21,7 +28,7 @@ TagManager:
   - 
   - Cryptid
   - Player
-  - 
+  - Photo
   - 
   - 
   - 

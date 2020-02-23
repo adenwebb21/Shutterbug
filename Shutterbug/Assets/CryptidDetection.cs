@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class CryptidDetection : MonoBehaviour
 {
     private CryptidProperties m_propertyBlock;
+    private GameObject m_player;
 
     private bool m_hasDetectedPlayer;
     private BilboardRotation m_rotator;
@@ -20,19 +22,34 @@ public class CryptidDetection : MonoBehaviour
 
     public float maxAmbientDetectionRadius = 10f;
 
+    private float m_detectionTimer = 0f;
+    public float m_detectionThreshold = 1f;
+
     private void Start()
     {
         m_propertyBlock = gameObject.GetComponent<CryptidProperties>();
         m_mover = gameObject.GetComponent<LocationSwitcher>();
         m_rotator = gameObject.GetComponentInChildren<BilboardRotation>();
+        m_player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
     {
+        // Checking line of sight
+        if (m_rotator.lookingAtPlayer)
+        {
+            m_hasLineOfSight = !EnvironmentInWay(m_player.transform);
+        }
+        else
+        {
+            m_hasLineOfSight = false;
+        }
+
+        // Checking if player in range
         int _layerMask = 1 << 9;
         Collider[] _hitColliders = Physics.OverlapSphere(m_tr.position, maxAmbientDetectionRadius, _layerMask);
 
-        if(_hitColliders.Length != 0)
+        if (_hitColliders.Length != 0)
         {
             m_playerInRange = true;
         }
@@ -41,38 +58,117 @@ public class CryptidDetection : MonoBehaviour
             m_playerInRange = false;
         }
 
-        if(m_playerInRange)
+        if (m_playerInRange)
         {
-            if(m_rotator.lookingAtPlayer)
-            {
-                m_hasLineOfSight = !EnvironmentInWay(_hitColliders[0].gameObject.transform);
-            }
-            else
-            {
-                m_hasLineOfSight = false;
-            }
-            
             m_distanceToPlayer = Vector3.Distance(m_tr.position, _hitColliders[0].gameObject.transform.position);
             m_distanceModifier = 1 - (m_distanceToPlayer / maxAmbientDetectionRadius);
         }
         else
         {
-            m_hasLineOfSight = false;
             m_distanceModifier = 0;
         }
 
-        if(m_propertyBlock.currentState == CryptidProperties.cryptidState.SEARCHING && _hitColliders.Length != 0 && PlayerDetected(_hitColliders[0], m_hasLineOfSight))
+        // Checking if detected
+        if (m_propertyBlock.currentState == CryptidProperties.cryptidState.SEARCHING && PlayerDetected(m_hasLineOfSight))
         {
             m_hasDetectedPlayer = true;
-            m_mover.Leave();
-            
         }
-        else if(_hitColliders.Length != 0 && !PlayerDetected(_hitColliders[0], m_hasLineOfSight))
+        else if (!PlayerDetected(m_hasLineOfSight))
         {
             m_hasDetectedPlayer = false;
         }
+
+        // Handling stealth meter
+        if (m_detectionTimer <= m_detectionThreshold && m_hasDetectedPlayer)
+        {
+            float _scalar = 1 - (m_player.GetComponent<PlayerStealth>().stealthValue / m_propertyBlock.currentPerception);
+            m_detectionTimer += Time.deltaTime * _scalar;
+            UIManager.Instance.UpdateStealthFillAmount(m_detectionTimer / m_detectionThreshold);
+
+            if (m_detectionTimer >= m_detectionThreshold)
+            {
+                m_mover.Leave();
+                m_detectionTimer = 0f;
+                UIManager.Instance.UpdateStealthFillAmount(0f);
+            }
+        }
+        else if (m_detectionTimer > 0f && !m_hasDetectedPlayer)
+        {
+            float _scalar = m_propertyBlock.currentPerception / m_player.GetComponent<PlayerStealth>().stealthValue;
+            m_detectionTimer -= Time.deltaTime * _scalar;
+            UIManager.Instance.UpdateStealthFillAmount(m_detectionTimer / m_detectionThreshold);
+        }
+
+        //int _layerMask = 1 << 9;
+        //Collider[] _hitColliders = Physics.OverlapSphere(m_tr.position, maxAmbientDetectionRadius, _layerMask);
+
+        //if(_hitColliders.Length != 0)
+        //{
+        //    m_playerInRange = true;
+        //}
+        //else
+        //{
+        //    m_playerInRange = false;
+        //}
+
+        //if(m_playerInRange)
+        //{
+        //    if(m_rotator.lookingAtPlayer)
+        //    {
+        //        m_hasLineOfSight = !EnvironmentInWay(_hitColliders[0].gameObject.transform);
+        //    }
+        //    else
+        //    {
+        //        m_hasLineOfSight = false;
+        //    }
+
+        //    m_distanceToPlayer = Vector3.Distance(m_tr.position, _hitColliders[0].gameObject.transform.position);
+        //    m_distanceModifier = 1 - (m_distanceToPlayer / maxAmbientDetectionRadius);
+        //}
+        //else
+        //{
+        //    m_hasLineOfSight = false;
+        //    m_distanceModifier = 0;
+        //}
+
+        //if(m_propertyBlock.currentState == CryptidProperties.cryptidState.SEARCHING && _hitColliders.Length != 0 && PlayerDetected(_hitColliders[0], m_hasLineOfSight))
+        //{
+        //    m_hasDetectedPlayer = true;
+
+
+        //}
+        //else if(_hitColliders.Length != 0 && !PlayerDetected(_hitColliders[0], m_hasLineOfSight))
+        //{
+        //    m_hasDetectedPlayer = false;
+        //}
+
+        //// check for if detected, increase detection timer based on scalar value above perception
+        //if (m_detectionTimer <= m_detectionThreshold && m_hasDetectedPlayer)
+        //{
+        //    float _scalar = 1 - (m_player.GetComponent<PlayerStealth>().stealthValue / m_propertyBlock.perception);
+        //    m_detectionTimer += Time.deltaTime * _scalar;
+        //    UIManager.Instance.UpdateStealthFillAmount(m_detectionTimer / m_detectionThreshold);
+
+        //    if(m_detectionTimer >= m_detectionThreshold)
+        //    {
+        //        m_mover.Leave();
+        //        m_detectionTimer = 0f;
+        //        UIManager.Instance.UpdateStealthFillAmount(0f);
+        //    }
+        //}
+        //else if (m_detectionTimer > 0f && !m_hasDetectedPlayer)
+        //{
+        //    float _scalar = m_propertyBlock.perception / m_player.GetComponent<PlayerStealth>().stealthValue;
+        //    m_detectionTimer -= Time.deltaTime * _scalar;
+        //    UIManager.Instance.UpdateStealthFillAmount(m_detectionTimer / m_detectionThreshold);
+        //}
     }
 
+    /// <summary>
+    /// Checking if any environment element falls in the way of the line of sight
+    /// </summary>
+    /// <param name="_player"> The transform of the player (the target) </param>
+    /// <returns> True if there is an obstruction, false if not </returns>
     private bool EnvironmentInWay(Transform _player)
     {
         bool _environmentInWay = false;
@@ -94,26 +190,44 @@ public class CryptidDetection : MonoBehaviour
         return _environmentInWay;
     }
 
-    private bool PlayerDetected(Collider _playerCollider, bool _lineOfSight)
+    /// <summary>
+    /// Determining whether or not the cryptid is aware of the player
+    /// </summary>
+    /// <param name="_lineOfSight"> The line of sight status </param>
+    /// <returns> True if player detected, false if not </returns>
+    private bool PlayerDetected(bool _lineOfSight)
     {
-        float _currentPlayerStealthValue = _playerCollider.gameObject.GetComponent<PlayerStealth>().stealthValue;
-        _currentPlayerStealthValue = _currentPlayerStealthValue * (1f - m_distanceModifier);
+        float _currentPlayerStealthValue = m_player.GetComponent<PlayerStealth>().stealthValue;   
+        m_propertyBlock.currentPerception = m_propertyBlock.defaultPerception;
 
-        if(!_lineOfSight)
+        if (!_lineOfSight)
         {
-            _currentPlayerStealthValue = _currentPlayerStealthValue * 3;
+            m_propertyBlock.currentPerception = m_propertyBlock.defaultPerception / 4;
         }
 
-        _playerCollider.gameObject.GetComponent<PlayerStealth>().stealthValue = _currentPlayerStealthValue;
+        //_currentPlayerStealthValue = Mathf.Clamp(_currentPlayerStealthValue, 0f, 100f);
 
-        if (_currentPlayerStealthValue < m_propertyBlock.perception)
+        //m_player.GetComponent<PlayerStealth>().stealthValue = _currentPlayerStealthValue;
+
+        if(m_distanceModifier < 0.5f)
+        {
+            m_propertyBlock.currentPerception = m_propertyBlock.currentPerception * m_distanceModifier;
+        }
+        else if(m_distanceModifier > 0.8f)
+        {
+            m_propertyBlock.currentPerception = m_propertyBlock.currentPerception * (1 + (m_distanceModifier * 4) - 0.5f);
+        }
+        else
+        {
+            m_propertyBlock.currentPerception = m_propertyBlock.currentPerception * (1 + (m_distanceModifier * 2) - 0.5f);
+        }
+        
+        if (_currentPlayerStealthValue < m_propertyBlock.currentPerception)
         {       
-            Debug.Log("Seen!!!!");
             return true;
         }
         else
         {
-            Debug.Log("Hidden..");
             return false;
         }   
     }
