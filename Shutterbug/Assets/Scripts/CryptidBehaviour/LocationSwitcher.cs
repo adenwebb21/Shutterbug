@@ -24,6 +24,8 @@ public class LocationSwitcher : MonoBehaviour
         }
 
         Respawn();
+
+        GameManager.Instance.AssignProofs();
     }
 
     private void Update()

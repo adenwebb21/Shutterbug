@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     public List<Photograph> currentPhotographs;
 
+    public List<GameObject> proofs;
+
     public Photograph bestPhoto;
     public int bestPhotoScore;
 
@@ -35,6 +37,16 @@ public class GameManager : MonoBehaviour
         else
         {
             s_instance = this;
+        }
+    }
+
+    public void AssignProofs()
+    {
+        GameObject[] _temp = GameObject.FindGameObjectsWithTag("Proof");
+
+        for (int i = 0; i < _temp.Length; i++)
+        {
+            proofs.Add(_temp[i]);
         }
     }
 

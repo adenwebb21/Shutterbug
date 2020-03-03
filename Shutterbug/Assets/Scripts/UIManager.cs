@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
 
     public Image stealthBar;
     public TextMeshProUGUI pictureCount;
+    public TextMeshProUGUI proofCount;
     public GameObject promptText;
 
     void Awake()
@@ -38,6 +39,11 @@ public class UIManager : MonoBehaviour
     public void UpdatePictureCount(int _newPictureCount)
     {
         pictureCount.SetText(_newPictureCount.ToString());
+    }
+
+    public void UpdateProofCount(int _newProofCount)
+    {
+        pictureCount.SetText(_newProofCount.ToString());
     }
 
     public void UpdateStealthFillAmount(float _fillValue)

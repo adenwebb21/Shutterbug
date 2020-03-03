@@ -48,6 +48,7 @@ MonoBehaviour:
     type: 3}
   currentCryptid: {fileID: 0}
   currentPhotographs: []
+  proofs: []
   bestPhoto: {fileID: 0}
   bestPhotoScore: 0
   photoCap: 5
