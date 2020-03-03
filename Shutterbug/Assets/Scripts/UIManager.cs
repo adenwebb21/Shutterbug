@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateProofCount(int _newProofCount)
     {
-        pictureCount.SetText(_newProofCount.ToString());
+        proofCount.SetText(_newProofCount.ToString());
     }
 
     public void UpdateStealthFillAmount(float _fillValue)

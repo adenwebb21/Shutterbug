@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     public int photoCap = 5;
     private int m_currentPhotoCount = 0;
+    private int m_currentProofCount = 0;
 
     public LevelLoader levelLoader;
 
@@ -71,6 +72,12 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Out of film");
         }
+    }
+
+    public void UpdateProofs()
+    {
+        m_currentProofCount++;
+        UIManager.Instance.UpdateProofCount(m_currentProofCount);
     }
 
     public void ResetPhotos()

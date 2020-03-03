@@ -55,9 +55,12 @@ public class TakePhoto : MonoBehaviour
             }
         }
 
-        _tempPhotograph.ProofInPicture = _tempIsVisible;
-        Debug.Log("Is proof visible?: " + _tempPhotograph.ProofInPicture);
+        if(_tempIsVisible)
+        {
+            GameManager.Instance.UpdateProofs();
+        }
 
+        _tempPhotograph.ProofInPicture = _tempIsVisible;
         GameManager.Instance.currentPhotographs.Add(_tempPhotograph);
         GameManager.Instance.TakePhoto();
     }
