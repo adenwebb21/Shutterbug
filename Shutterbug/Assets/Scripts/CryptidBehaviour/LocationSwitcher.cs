@@ -44,9 +44,9 @@ public class LocationSwitcher : MonoBehaviour
         m_propertyBlock.currentState = CryptidProperties.cryptidState.MOVING;
 
         // Choose point based on preference
-        int _randomIndex = 0; 
+        int _randomIndex = 0;
 
-        while(_randomIndex == m_currentIndex)
+        while(_randomIndex == m_currentIndex || spawnLocations[_randomIndex].spawnRegion == spawnLocations[m_currentIndex].spawnRegion)
         {
             _randomIndex = Random.Range(0, spawnLocations.Count);       
         }

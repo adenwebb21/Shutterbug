@@ -16,7 +16,8 @@ public class CryptidDetection : MonoBehaviour
     private float m_distanceModifier;
     private bool m_hasLineOfSight;
 
-    public Transform m_tr;
+    public Transform tr;
+    public Transform eye;
 
     private bool m_playerInRange = false;
 
@@ -47,7 +48,7 @@ public class CryptidDetection : MonoBehaviour
 
         // Checking if player in range
         int _layerMask = 1 << 9;
-        Collider[] _hitColliders = Physics.OverlapSphere(m_tr.position, maxAmbientDetectionRadius, _layerMask);
+        Collider[] _hitColliders = Physics.OverlapSphere(tr.position, maxAmbientDetectionRadius, _layerMask);
 
         if (_hitColliders.Length != 0)
         {
@@ -60,7 +61,7 @@ public class CryptidDetection : MonoBehaviour
 
         if (m_playerInRange)
         {
-            m_distanceToPlayer = Vector3.Distance(m_tr.position, _hitColliders[0].gameObject.transform.position);
+            m_distanceToPlayer = Vector3.Distance(tr.position, _hitColliders[0].gameObject.transform.position);
             m_distanceModifier = 1 - (m_distanceToPlayer / maxAmbientDetectionRadius);
         }
         else
@@ -96,6 +97,12 @@ public class CryptidDetection : MonoBehaviour
         {
             float _scalar = m_propertyBlock.currentPerception / m_player.GetComponent<PlayerStealth>().stealthValue;
             m_detectionTimer -= Time.deltaTime * _scalar;
+            UIManager.Instance.UpdateStealthFillAmount(m_detectionTimer / m_detectionThreshold);
+        }
+
+        if(m_propertyBlock.currentState == CryptidProperties.cryptidState.MOVING)
+        {
+            m_detectionTimer = 0;
             UIManager.Instance.UpdateStealthFillAmount(m_detectionTimer / m_detectionThreshold);
         }
 
@@ -174,17 +181,17 @@ public class CryptidDetection : MonoBehaviour
         bool _environmentInWay = false;
 
         RaycastHit _rayHit;
-        Vector3 _directionToPoint = -(gameObject.transform.position - _player.transform.position).normalized;
+        Vector3 _directionToPoint = -(eye.position - _player.transform.position).normalized;
 
-        if (Physics.Raycast(transform.position, _directionToPoint, out _rayHit, Vector3.Distance(transform.position, _player.position)) && _rayHit.collider.gameObject.tag == "Environment")
+        if (Physics.Raycast(eye.position, _directionToPoint, out _rayHit, Vector3.Distance(eye.position, _player.position)) && _rayHit.collider.gameObject.tag == "Environment")
         {
             _environmentInWay = true;
-            Debug.DrawRay(gameObject.transform.position, _directionToPoint * 1000f, Color.magenta);
+            Debug.DrawRay(eye.position, _directionToPoint * 1000f, Color.magenta);
         }
         else
         {
             _environmentInWay = false;
-            Debug.DrawRay(gameObject.transform.position, _directionToPoint * 1000f, Color.green);
+            Debug.DrawRay(eye.position, _directionToPoint * 1000f, Color.green);
         }
 
         return _environmentInWay;
@@ -235,7 +242,7 @@ public class CryptidDetection : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(m_tr.position, maxAmbientDetectionRadius);
+        Gizmos.DrawWireSphere(tr.position, maxAmbientDetectionRadius);
     }
 
 

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class InitialCryptidSpawn : MonoBehaviour
 {
-    public Transform initialSpawn;
-
     void Start()
     {
         Transform _firstSpawn = transform.GetChild(0);
