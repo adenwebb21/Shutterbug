@@ -6,7 +6,8 @@ using TMPro;
 
 public class Scoring : MonoBehaviour
 {
-    public GameObject[] chosenPhotos;
+    public List<GameObject> chosenProofs;
+    public GameObject chosenSighting;
     public GameObject currentPhotoObject;
 
     private GameObject m_bestPhoto;
@@ -36,7 +37,7 @@ public class Scoring : MonoBehaviour
             if (m_scores[i] > _highestScore)
             {
                 _highestScore = m_scores[i];
-                m_bestPhoto = chosenPhotos[i];
+                m_bestPhoto = chosenProofs[i];
             }
         }
 
@@ -73,7 +74,7 @@ public class Scoring : MonoBehaviour
     {
         m_currentPhotoIndex++;
 
-        currentPhotoObject.GetComponent<Image>().sprite = chosenPhotos[m_currentPhotoIndex].GetComponent<PhotoData>().photoData.Image;
+        currentPhotoObject.GetComponent<Image>().sprite = chosenProofs[m_currentPhotoIndex].GetComponent<PhotoData>().photoData.Image;
         currentPhotoObject.GetComponent<Animator>().Play("photo_in");
         Invoke("InitialScore", 1f);             
     }
@@ -89,7 +90,7 @@ public class Scoring : MonoBehaviour
 
     private void Mod1()
     {
-        if(chosenPhotos[m_currentPhotoIndex].GetComponent<PhotoData>().photoData.CryptidInPicture)
+        if(chosenProofs[m_currentPhotoIndex].GetComponent<PhotoData>().photoData.CryptidInPicture)
         {
             modifier1.GetComponent<TextMeshProUGUI>().text = "Cryptid was in the picture: " + inFrameScore.ToString() + " pts";
             m_currentScore += inFrameScore;
@@ -124,7 +125,7 @@ public class Scoring : MonoBehaviour
 
     private void NextButton()
     {
-        if(m_currentPhotoIndex == chosenPhotos.Length - 1)
+        if(m_currentPhotoIndex == chosenProofs.Count - 1)
         {
             finishButton.SetActive(true);
         }

@@ -27,8 +27,6 @@ public class AssignPictures : MonoBehaviour
 
     IEnumerator SpawnPhotos(float _delayTime)
     {
-        
-
         if (GameManager.Instance)
         {
             for (int i = 0; i < GameManager.Instance.currentPhotographs.Count; i++)

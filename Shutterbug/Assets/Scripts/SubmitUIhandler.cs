@@ -1,24 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SubmitUIhandler : MonoBehaviour
 {
-    public GameObject submitButton;
+    public GameObject submitProofButton, submitSightingButton;
+    public TextMeshProUGUI boxText;
     public GameObject scoringUIElement;
 
     public void SubmitButtonOff()
     {
-        submitButton.SetActive(false);
+        submitProofButton.SetActive(false);
+        submitSightingButton.SetActive(false);
     }
 
-    public void SubmitButtonOn()
+    public void SubmitProofOn()
     {
-        submitButton.SetActive(true);
+        submitProofButton.SetActive(true);
+    }
+
+    public void SubmitSightingOn()
+    {
+        submitSightingButton.SetActive(true);
     }
 
     public void StartScoring()
     {
         scoringUIElement.SetActive(true);
+    }
+
+    public void SetBoxText(string _text)
+    {
+        boxText.SetText("[" + _text + "]");
     }
 }
