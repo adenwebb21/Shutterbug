@@ -84,6 +84,7 @@ public class CryptidDetection : MonoBehaviour
         {
             float _scalar = 1 - (m_player.GetComponent<PlayerStealth>().stealthValue / m_propertyBlock.currentPerception);
             m_detectionTimer += Time.deltaTime * _scalar;
+            m_detectionTimer += m_detectionTimer / 200;
             UIManager.Instance.UpdateStealthFillAmount(m_detectionTimer / m_detectionThreshold);
 
             if (m_detectionTimer >= m_detectionThreshold)
