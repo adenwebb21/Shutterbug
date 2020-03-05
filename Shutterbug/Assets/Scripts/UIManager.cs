@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI pictureCount;
     public TextMeshProUGUI proofCount;
     public GameObject promptText;
+    public GameObject entryPrompt;
 
     void Awake()
     {
@@ -54,6 +55,11 @@ public class UIManager : MonoBehaviour
     public void EnablePromptText()
     {
         promptText.SetActive(true);
+    }
+
+    public void EntryPrompt()
+    {
+        entryPrompt.GetComponent<Animator>().Play("entrymessage_fade_in");
     }
 
 
