@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public Photograph bestPhoto;
     public int bestPhotoScore;
 
-    public int photoCap = 5;
+    public int photoCap = 10;
     private int m_currentPhotoCount = 0;
     private int m_currentProofCount = 0;
 
