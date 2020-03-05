@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour
 
     public GameEvent enoughPhotos;
 
+    private float m_spawnChance = 0f;
+    private bool m_cryptidSpawned = false;
+
+    public GameObject initialSpawner;
+
     void Awake()
     {
         if (s_instance != null && s_instance != this)
@@ -78,11 +83,22 @@ public class GameManager : MonoBehaviour
     {
         m_currentProofCount++;
         UIManager.Instance.UpdateProofCount(m_currentProofCount);
+
+        if(Random.Range(0f, 100f) < m_spawnChance && !m_cryptidSpawned)
+        {
+            initialSpawner.GetComponent<InitialCryptidSpawn>().EnterCryptid();
+            Debug.Log("Cryptid spawned");
+            m_cryptidSpawned = true;
+        }
+
+        m_spawnChance = Mathf.Clamp(m_spawnChance + 25, 0f, 100f);
     }
 
     public void ResetPhotos()
     {
         m_currentPhotoCount = 0;
+        m_spawnChance = 0f;
+        m_cryptidSpawned = false;
         currentPhotographs.Clear();
     }
 

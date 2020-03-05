@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class InitialCryptidSpawn : MonoBehaviour
 {
+    Transform _firstSpawn;
+
     void Start()
     {
-        Transform _firstSpawn = transform.GetChild(0);
+        _firstSpawn = transform.GetChild(0);       
+    }
+
+    public void EnterCryptid()
+    {
         GameManager.Instance.currentCryptid = Instantiate(GameManager.Instance.cryptidPrefab, _firstSpawn.position, _firstSpawn.rotation);
     }
 }

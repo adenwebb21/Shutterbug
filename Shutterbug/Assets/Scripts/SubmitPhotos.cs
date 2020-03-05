@@ -89,6 +89,6 @@ public class SubmitPhotos : MonoBehaviour
         scoringScript.chosenProofs = m_chosenProofs;
         scoringScript.chosenSighting = m_chosenSighting;
         startScoring.Raise();
-        scoringScript.ScoreNextPhoto();        
+        scoringScript.ViewSighting();        
     }
 }

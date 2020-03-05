@@ -14,6 +14,12 @@ public class Scoring : MonoBehaviour
 
     public GameObject scoreValue, modifier1, modifier2, modifier3, nextPhoto, finishButton;
 
+    public GameObject proofLayoutGroup;
+    public GameObject scoreLayoutGroup;
+
+    public GameObject proofImagePrefab;
+    public GameObject scoreTextPrefab;
+
     private int m_currentPhotoIndex = -1;
     public int baseScore = 50;
     public int inFrameScore = 50;
@@ -21,7 +27,9 @@ public class Scoring : MonoBehaviour
     private int m_currentScore;
 
     private string[] m_randomAdditions;
-    private int[] m_scores = new int[3];
+
+    private bool m_showingProofs = true;
+    private bool m_scoringSighting = true;
 
     private void Start()
     {
@@ -30,18 +38,18 @@ public class Scoring : MonoBehaviour
 
     public void ReturnToMenu()
     {
-        int _highestScore = 0;
+        //int _highestScore = 0;
 
-        for (int i = 0; i < m_scores.Length; i++)
-        {
-            if (m_scores[i] > _highestScore)
-            {
-                _highestScore = m_scores[i];
-                m_bestPhoto = chosenProofs[i];
-            }
-        }
-
-        GameManager.Instance.bestPhotoScore = _highestScore;
+        //for (int i = 0; i < m_scores.Length; i++)
+        //{
+        //    if (m_scores[i] > _highestScore)
+        //    {
+        //        _highestScore = m_scores[i];
+        //        m_bestPhoto = chosenProofs[i];
+        //    }
+        //}
+        m_bestPhoto = chosenSighting;
+        GameManager.Instance.bestPhotoScore = m_currentScore;
         GameManager.Instance.bestPhoto = m_bestPhoto.GetComponent<PhotoData>().photoData;
         GameManager.Instance.levelLoader.LoadMainMenu();     
     }
@@ -54,9 +62,6 @@ public class Scoring : MonoBehaviour
         modifier3.SetActive(false);
         finishButton.SetActive(false);
         nextPhoto.SetActive(false);
-
-        m_scores[m_currentPhotoIndex] = m_currentScore;
-        m_currentScore = 0;
     }
 
     public void AnimatePhotoOut()
@@ -70,68 +75,153 @@ public class Scoring : MonoBehaviour
         
     }
 
-    public void ScoreNextPhoto()
-    {
-        m_currentPhotoIndex++;
+    //public void ScoreNextPhoto()
+    //{
+    //    m_currentPhotoIndex++;
 
-        currentPhotoObject.GetComponent<Image>().sprite = chosenProofs[m_currentPhotoIndex].GetComponent<PhotoData>().photoData.Image;
+    //    currentPhotoObject.GetComponent<Image>().sprite = chosenProofs[m_currentPhotoIndex].GetComponent<PhotoData>().photoData.Image;
+    //    currentPhotoObject.GetComponent<Animator>().Play("photo_in");
+    //    Invoke("InitialScore", 1f);             
+    //}
+
+    public void ViewSighting()
+    {
+        currentPhotoObject.GetComponent<Image>().sprite = chosenSighting.GetComponent<PhotoData>().photoData.Image;
         currentPhotoObject.GetComponent<Animator>().Play("photo_in");
-        Invoke("InitialScore", 1f);             
+
+        Invoke("StartScoringSighting", 1f);
     }
 
-    private void InitialScore()
+    private void DelayedProof()
     {
-        scoreValue.GetComponent<TextMeshProUGUI>().text = "Score: " + baseScore.ToString();
-        m_currentScore = baseScore;
-        scoreValue.SetActive(true);
-
-        Invoke("Mod1", 1f);
+        StartCoroutine(Proof());
     }
 
-    private void Mod1()
+    IEnumerator Proof()
     {
-        if(chosenProofs[m_currentPhotoIndex].GetComponent<PhotoData>().photoData.CryptidInPicture)
+        int _proofCount = 0;
+        while(m_showingProofs && _proofCount < chosenProofs.Count)
         {
-            modifier1.GetComponent<TextMeshProUGUI>().text = "Cryptid was in the picture: " + inFrameScore.ToString() + " pts";
-            m_currentScore += inFrameScore;
-            scoreValue.GetComponent<TextMeshProUGUI>().text = "Score: " + m_currentScore.ToString();
-            modifier1.SetActive(true);
+            // animate proof photo in
+            GameObject _proofImage = Instantiate(proofImagePrefab, proofLayoutGroup.transform);
+            _proofImage.GetComponent<Image>().sprite = chosenProofs[_proofCount].GetComponent<PhotoData>().photoData.Image;
+
+            // add money + comments
+            if(chosenProofs[_proofCount].GetComponent<PhotoData>().photoData.ProofInPicture)
+            {
+                GameObject _scoreText = Instantiate(scoreTextPrefab, scoreLayoutGroup.transform);
+                _scoreText.GetComponent<TextMeshProUGUI>().SetText("Relevant proof: 1.5x");
+                m_currentScore = Mathf.RoundToInt(m_currentScore * 1.5f);
+                scoreValue.GetComponent<TextMeshProUGUI>().text = "Score: " + m_currentScore.ToString();
+            }
+
+            _proofCount++;
+            yield return new WaitForSeconds(1f);
         }
 
-        Invoke("Mod2", 1f);
+        NextButton();
     }
 
-    private void Mod2()
+    IEnumerator Sighting()
     {
-        int _temp = ((int)(Random.Range(30, 70) / 10)) * 10;
-        m_currentScore += _temp;
-        scoreValue.GetComponent<TextMeshProUGUI>().text = "Score: " + m_currentScore.ToString();
-        modifier2.GetComponent<TextMeshProUGUI>().text = m_randomAdditions[Random.Range(0, 2)] + _temp.ToString() + " pts";
-        modifier2.SetActive(true);
+        int _check = 0;
+        while (m_scoringSighting)
+        {
+            GameObject _scoreText = Instantiate(scoreTextPrefab, scoreLayoutGroup.transform);
 
-        Invoke("Mod3", 1f);
+            switch (_check)
+            {
+                case 0:
+                    if (chosenSighting.GetComponent<PhotoData>().photoData.CryptidInPicture)
+                    {
+                        _scoreText.GetComponent<TextMeshProUGUI>().SetText("Cryptid was in the picture: " + inFrameScore.ToString() + " pts");
+                        m_currentScore += inFrameScore;
+                        scoreValue.GetComponent<TextMeshProUGUI>().text = "Score: " + m_currentScore.ToString();
+                    }
+                    else
+                    {
+                        Destroy(_scoreText);
+                    }                       
+                    break;
+
+                case 1:
+                    int _temp = ((int)(Random.Range(30, 70) / 10)) * 10;
+                    m_currentScore += _temp;
+                    scoreValue.GetComponent<TextMeshProUGUI>().text = "Score: " + m_currentScore.ToString();
+                    _scoreText.GetComponent<TextMeshProUGUI>().text = m_randomAdditions[Random.Range(0, 2)] + _temp.ToString() + " pts";
+                    break;
+
+                case 2:
+                    _temp = ((int)(Random.Range(30, 70) / 10)) * 10;
+                    m_currentScore += _temp;
+                    scoreValue.GetComponent<TextMeshProUGUI>().text = "Score: " + m_currentScore.ToString();
+                    _scoreText.GetComponent<TextMeshProUGUI>().text = m_randomAdditions[Random.Range(2, 4)] + _temp.ToString() + " pts";
+                    break;
+
+                default:
+                    m_scoringSighting = false;
+                    Destroy(_scoreText);
+                    break;
+            }
+
+            _check++;
+            yield return new WaitForSeconds(1f);
+        }
+
+        DelayedProof();
     }
 
-    private void Mod3()
+    private void StartScoringSighting()
     {
-        int _temp = ((int)(Random.Range(30, 70) / 10)) * 10;
-        m_currentScore += _temp;
-        scoreValue.GetComponent<TextMeshProUGUI>().text = "Score: " + m_currentScore.ToString();
-        modifier3.GetComponent<TextMeshProUGUI>().text = m_randomAdditions[Random.Range(2, 4)] + _temp.ToString() + " pts";
-        modifier3.SetActive(true);
-
-        Invoke("NextButton", 1f);
+        StartCoroutine(Sighting());
     }
+
+    //private void InitialScore()
+    //{
+    //    scoreValue.GetComponent<TextMeshProUGUI>().text = "Score: " + baseScore.ToString();
+    //    m_currentScore = baseScore;
+    //    scoreValue.SetActive(true);
+
+    //    Invoke("Mod1", 1f);
+    //}
+
+    //private void Mod1()
+    //{
+    //    if(chosenProofs[m_currentPhotoIndex].GetComponent<PhotoData>().photoData.CryptidInPicture)
+    //    {
+    //        modifier1.GetComponent<TextMeshProUGUI>().text = "Cryptid was in the picture: " + inFrameScore.ToString() + " pts";
+    //        m_currentScore += inFrameScore;
+    //        scoreValue.GetComponent<TextMeshProUGUI>().text = "Score: " + m_currentScore.ToString();
+    //        modifier1.SetActive(true);
+    //    }
+
+    //    Invoke("Mod2", 1f);
+    //}
+
+    //private void Mod2()
+    //{
+    //    int _temp = ((int)(Random.Range(30, 70) / 10)) * 10;
+    //    m_currentScore += _temp;
+    //    scoreValue.GetComponent<TextMeshProUGUI>().text = "Score: " + m_currentScore.ToString();
+    //    modifier2.GetComponent<TextMeshProUGUI>().text = m_randomAdditions[Random.Range(0, 2)] + _temp.ToString() + " pts";
+    //    modifier2.SetActive(true);
+
+    //    Invoke("Mod3", 1f);
+    //}
+
+    //private void Mod3()
+    //{
+    //    int _temp = ((int)(Random.Range(30, 70) / 10)) * 10;
+    //    m_currentScore += _temp;
+    //    scoreValue.GetComponent<TextMeshProUGUI>().text = "Score: " + m_currentScore.ToString();
+    //    modifier3.GetComponent<TextMeshProUGUI>().text = m_randomAdditions[Random.Range(2, 4)] + _temp.ToString() + " pts";
+    //    modifier3.SetActive(true);
+
+    //    Invoke("NextButton", 1f);
+    //}
 
     private void NextButton()
     {
-        if(m_currentPhotoIndex == chosenProofs.Count - 1)
-        {
-            finishButton.SetActive(true);
-        }
-        else
-        {
-            nextPhoto.SetActive(true);
-        }     
+        finishButton.SetActive(true);
     }
 }

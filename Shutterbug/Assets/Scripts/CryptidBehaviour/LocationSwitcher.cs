@@ -23,8 +23,6 @@ public class LocationSwitcher : MonoBehaviour
             spawnLocations.Add(_spawn.GetComponent<SpawnPoint>());
         }
 
-        Respawn();
-
         GameManager.Instance.AssignProofs();
     }
 
