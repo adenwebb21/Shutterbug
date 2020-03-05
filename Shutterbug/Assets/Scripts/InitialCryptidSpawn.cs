@@ -8,11 +8,7 @@ public class InitialCryptidSpawn : MonoBehaviour
 
     void Start()
     {
-        _firstSpawn = transform.GetChild(0);       
-    }
-
-    public void EnterCryptid()
-    {
+        _firstSpawn = transform.GetChild(0);
         GameManager.Instance.currentCryptid = Instantiate(GameManager.Instance.cryptidPrefab, _firstSpawn.position, _firstSpawn.rotation);
     }
 }

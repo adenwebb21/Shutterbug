@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
 
         if(Random.Range(0f, 100f) < m_spawnChance && !m_cryptidSpawned)
         {
-            initialSpawner.GetComponent<InitialCryptidSpawn>().EnterCryptid();
+            currentCryptid.GetComponent<LocationSwitcher>().Respawn();
             Debug.Log("Cryptid spawned");
             m_cryptidSpawned = true;
         }
