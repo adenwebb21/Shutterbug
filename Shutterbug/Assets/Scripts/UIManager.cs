@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     public GameObject entryPrompt;
     public GameObject exitPrompt;
 
+    public GameObject handBook;
+    private bool m_handBookOpen = false;
+
     void Awake()
     {
         //Singleton Implementation
@@ -30,6 +33,24 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
             return;
+        }
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            if(!m_handBookOpen)
+            {
+                handBook.GetComponent<Animator>().Play("handbook_in");
+                m_handBookOpen = true;
+            }
+            else
+            {
+                handBook.GetComponent<Animator>().Play("handbook_out");
+                m_handBookOpen = false;
+            }
+            
         }
     }
 
