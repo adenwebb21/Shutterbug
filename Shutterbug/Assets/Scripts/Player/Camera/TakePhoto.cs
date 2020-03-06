@@ -46,11 +46,13 @@ public class TakePhoto : MonoBehaviour
 
         bool _tempIsVisible = false;
 
-        foreach(GameObject _proof in GameManager.Instance.proofs)
+        foreach(GameObject _proof in GameManager.Instance.proofsInWorld)
         {
             if(IsObjectVisible(_proof))
             {
                 _tempIsVisible = true;
+                _tempPhotograph.ProofCryptid = _proof.GetComponent<ProofData>().cryptid;
+                _tempPhotograph.ProofName = _proof.name;
                 break;
             }
         }
@@ -84,8 +86,6 @@ public class TakePhoto : MonoBehaviour
                 _inShot = false;
             }
         }
-
-        Debug.Log(_inShot);
         return _inShot;
     }
 
@@ -98,14 +98,11 @@ public class TakePhoto : MonoBehaviour
         if (_screenPoint.z > 0 && _screenPoint.x > 0 && _screenPoint.x < 1 && _screenPoint.y > 0 && _screenPoint.y < 1 && !EnvironmentInWay(_object.transform))
         {
             _inShot = true;
-            Debug.Log(_object.name);
         }
         else
         {
             _inShot = false;
         }
-
-        Debug.Log(_inShot);
         return _inShot;
     }
 

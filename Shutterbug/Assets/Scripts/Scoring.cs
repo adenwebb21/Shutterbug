@@ -92,27 +92,41 @@ public class Scoring : MonoBehaviour
         Invoke("StartScoringSighting", 1f);
     }
 
-    private void DelayedProof()
+    private void DelayedProof(bool _valid)
     {
-        StartCoroutine(Proof());
+        StartCoroutine(Proof(_valid));
     }
 
-    IEnumerator Proof()
+    IEnumerator Proof(bool _valid)
     {
         int _proofCount = 0;
+        List<string> _seenProofs = new List<string>();
+
         while(m_showingProofs && _proofCount < chosenProofs.Count)
         {
             // animate proof photo in
             GameObject _proofImage = Instantiate(proofImagePrefab, proofLayoutGroup.transform);
             _proofImage.GetComponent<Image>().sprite = chosenProofs[_proofCount].GetComponent<PhotoData>().photoData.Image;
 
+            int _timesProofSeen = 0;
+
+            foreach(string _name in _seenProofs)
+            {
+                if(_name == chosenProofs[_proofCount].GetComponent<PhotoData>().photoData.ProofName)
+                {
+                    _timesProofSeen++;
+                }
+            }
+
             // add money + comments
-            if(chosenProofs[_proofCount].GetComponent<PhotoData>().photoData.ProofInPicture)
+            if(chosenProofs[_proofCount].GetComponent<PhotoData>().photoData.ProofInPicture && chosenProofs[_proofCount].GetComponent<PhotoData>().photoData.ProofCryptid == GameManager.Instance.cryptidEnum && _valid && _timesProofSeen == 0)
             {
                 GameObject _scoreText = Instantiate(scoreTextPrefab, scoreLayoutGroup.transform);
                 _scoreText.GetComponent<TextMeshProUGUI>().SetText("Relevant proof: 1.5x");
                 m_currentScore = Mathf.RoundToInt(m_currentScore * 1.5f);
                 scoreValue.GetComponent<TextMeshProUGUI>().text = "Score: " + m_currentScore.ToString();
+
+                _seenProofs.Add(chosenProofs[_proofCount].GetComponent<PhotoData>().photoData.ProofName);
             }
 
             _proofCount++;
@@ -168,7 +182,10 @@ public class Scoring : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
-        DelayedProof();
+        if (chosenSighting.GetComponent<PhotoData>().photoData.CryptidInPicture)
+            DelayedProof(true);
+        else
+            DelayedProof(false);
     }
 
     private void StartScoringSighting()

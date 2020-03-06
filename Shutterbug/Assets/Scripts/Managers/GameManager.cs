@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum cryptid { mosstop, red, blue };
+
 public class GameManager : MonoBehaviour
 {
     #region Singleton
@@ -13,10 +15,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject cryptidPrefab;
     public GameObject currentCryptid;
+    public cryptid cryptidEnum;
 
     public List<Photograph> currentPhotographs;
 
-    public List<GameObject> proofs;
+    public List<GameObject> proofsInWorld;
 
     public Photograph bestPhoto;
     public int bestPhotoScore;
@@ -52,13 +55,15 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < _temp.Length; i++)
         {
-            proofs.Add(_temp[i]);
+            proofsInWorld.Add(_temp[i]);
         }
     }
 
     public void AssignCryptid(GameObject _chosenCryptid)
     {
         cryptidPrefab = _chosenCryptid;
+        cryptidEnum = cryptid.mosstop;
+
     }
 
     public void TakePhoto()
@@ -88,7 +93,6 @@ public class GameManager : MonoBehaviour
         if(_check < m_spawnChance && !m_cryptidSpawned)
         {
             currentCryptid.GetComponent<LocationSwitcher>().Respawn();
-            Debug.Log("Cryptid spawned");
             UIManager.Instance.EntryPrompt();
             m_cryptidSpawned = true;
         }
@@ -102,6 +106,7 @@ public class GameManager : MonoBehaviour
         m_spawnChance = 0f;
         m_cryptidSpawned = false;
         currentPhotographs.Clear();
+        proofsInWorld.Clear();
     }
 
     private void Update()

@@ -6,19 +6,25 @@ public class LocationSwitcher : MonoBehaviour
 {
     public List<SpawnPoint> spawnLocations;
     private GameObject[] m_spawns;
+    private GameObject m_initialSpawn;
     private CryptidProperties m_propertyBlock;
     private SpawnPoint m_currentSpawnPoint;
 
     private int m_currentIndex = 0;
 
+    private int m_moveCount = -1;
+
     private void Start()
     {
+        m_moveCount = -1;
+
         // do specialised finding here
         m_propertyBlock = gameObject.GetComponent<CryptidProperties>();
 
         m_spawns = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        m_initialSpawn = GameObject.FindGameObjectWithTag("initialSpawn");
 
-        foreach(GameObject _spawn in m_spawns)
+        foreach (GameObject _spawn in m_spawns)
         {
             spawnLocations.Add(_spawn.GetComponent<SpawnPoint>());
         }
@@ -41,29 +47,43 @@ public class LocationSwitcher : MonoBehaviour
     [ContextMenu("Respawn")]
     public void Respawn()
     {
-        m_propertyBlock.currentState = CryptidProperties.cryptidState.MOVING;
+        m_moveCount++;
 
-        // Choose point based on preference
-        int _randomIndex = 0;
-
-        while(_randomIndex == m_currentIndex || spawnLocations[_randomIndex].spawnRegion == spawnLocations[m_currentIndex].spawnRegion)
+        if(m_moveCount >= 3)
         {
-            _randomIndex = Random.Range(0, spawnLocations.Count);       
+            LeavePermanent();
         }
+        else
+        {
+            m_propertyBlock.currentState = CryptidProperties.cryptidState.MOVING;
 
-        m_currentIndex = _randomIndex;
+            // Choose point based on preference
+            int _randomIndex = 0;
 
-        m_currentSpawnPoint = spawnLocations[m_currentIndex];
-        m_currentSpawnPoint.Spawn(gameObject);
-        m_propertyBlock.currentState = CryptidProperties.cryptidState.SEARCHING;
+            while (_randomIndex == m_currentIndex || spawnLocations[_randomIndex].spawnRegion == spawnLocations[m_currentIndex].spawnRegion)
+            {
+                _randomIndex = Random.Range(0, spawnLocations.Count);
+            }
+
+            m_currentIndex = _randomIndex;
+
+            m_currentSpawnPoint = spawnLocations[m_currentIndex];
+            m_currentSpawnPoint.Spawn(gameObject);
+            m_propertyBlock.currentState = CryptidProperties.cryptidState.SEARCHING;
+        }      
     }
 
-    [ContextMenu("Leave")]
     public void Leave()
     {
         m_propertyBlock.currentState = CryptidProperties.cryptidState.MOVING;
 
         m_currentSpawnPoint.Leave(gameObject);
         Invoke("Respawn", 1.5f);
+    }
+
+    private void LeavePermanent()
+    {
+        UIManager.Instance.ExitPrompt();
+        gameObject.transform.position = m_initialSpawn.transform.position;
     }
 }

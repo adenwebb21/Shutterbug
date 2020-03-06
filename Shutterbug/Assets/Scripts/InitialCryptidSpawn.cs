@@ -9,5 +9,6 @@ public class InitialCryptidSpawn : MonoBehaviour
     void Start()
     {
         GameManager.Instance.currentCryptid = Instantiate(GameManager.Instance.cryptidPrefab, _firstSpawn.position, _firstSpawn.rotation);
+        GameManager.Instance.ResetPhotos();
     }
 }
