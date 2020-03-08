@@ -1798,10 +1798,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1690500619768177579, guid: 20d5a1f9875d2474f9616d2caa1c233d,
         type: 3}
-      propertyPath: bestPhoto
-      value: 
-      objectReference: {fileID: 11400000, guid: 1a15c74dd4f682c4fb8f0a942c281fa1,
-        type: 2}
+      propertyPath: photoCap
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20d5a1f9875d2474f9616d2caa1c233d, type: 3}
 --- !u!114 &1843524548 stripped

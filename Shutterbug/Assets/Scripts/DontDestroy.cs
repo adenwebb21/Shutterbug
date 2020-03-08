@@ -13,7 +13,6 @@ public class DontDestroy : MonoBehaviour
     void Awake()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Manager");
-        Debug.Log(objs.Length);
 
         if (objs.Length > 1)
         {

@@ -22,8 +22,17 @@ public class SpawnPoint : MonoBehaviour
         Either
     }
 
+    public enum Region
+    {
+        Rocks,
+        Shrine,
+        Lake,
+        Hut
+    }
+
     public EnterFrom enterDirection;
     public ExitTo exitDirection;
+    public Region spawnRegion;
 
     public void Spawn(GameObject _cryptid)
     {

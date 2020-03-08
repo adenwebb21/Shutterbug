@@ -17,6 +17,7 @@ TagManager:
   - Table
   - Fire
   - MenuBook
+  - Proof
   layers:
   - Default
   - TransparentFX

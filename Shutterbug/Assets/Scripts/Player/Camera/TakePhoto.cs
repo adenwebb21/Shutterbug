@@ -42,13 +42,32 @@ public class TakePhoto : MonoBehaviour
         Sprite _newPhoto = ImageToSprite.LoadNewSprite(_filePath);
         Photograph _tempPhotograph = ScriptableObject.CreateInstance<Photograph>();
         _tempPhotograph.Image = _newPhoto;
-        _tempPhotograph.CryptidInPicture = IsVisible(GameManager.Instance.currentCryptid);
+        _tempPhotograph.CryptidInPicture = IsCryptidVisible(GameManager.Instance.currentCryptid);
 
+        bool _tempIsVisible = false;
+
+        foreach(GameObject _proof in GameManager.Instance.proofsInWorld)
+        {
+            if(IsObjectVisible(_proof))
+            {
+                _tempIsVisible = true;
+                _tempPhotograph.ProofCryptid = _proof.GetComponent<ProofData>().cryptid;
+                _tempPhotograph.ProofName = _proof.name;
+                break;
+            }
+        }
+
+        if(_tempIsVisible)
+        {
+            GameManager.Instance.UpdateProofs();
+        }
+
+        _tempPhotograph.ProofInPicture = _tempIsVisible;
         GameManager.Instance.currentPhotographs.Add(_tempPhotograph);
         GameManager.Instance.TakePhoto();
     }
 
-    private bool IsVisible(GameObject _cryptid)
+    private bool IsCryptidVisible(GameObject _cryptid)
     {
         bool _inShot = false;
 
@@ -67,8 +86,23 @@ public class TakePhoto : MonoBehaviour
                 _inShot = false;
             }
         }
+        return _inShot;
+    }
 
-        Debug.Log(_inShot);
+    private bool IsObjectVisible(GameObject _object)
+    {
+        bool _inShot = false;
+
+        Vector3 _screenPoint = gameObject.GetComponent<Camera>().WorldToViewportPoint(_object.transform.position);
+
+        if (_screenPoint.z > 0 && _screenPoint.x > 0 && _screenPoint.x < 1 && _screenPoint.y > 0 && _screenPoint.y < 1 && !EnvironmentInWay(_object.transform))
+        {
+            _inShot = true;
+        }
+        else
+        {
+            _inShot = false;
+        }
         return _inShot;
     }
 

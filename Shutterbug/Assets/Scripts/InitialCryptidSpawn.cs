@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class InitialCryptidSpawn : MonoBehaviour
 {
-    public Transform initialSpawn;
+    public Transform _firstSpawn;
 
     void Start()
     {
-        Transform _firstSpawn = transform.GetChild(0);
         GameManager.Instance.currentCryptid = Instantiate(GameManager.Instance.cryptidPrefab, _firstSpawn.position, _firstSpawn.rotation);
+        GameManager.Instance.ResetPhotos();
     }
 }

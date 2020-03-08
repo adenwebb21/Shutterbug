@@ -10,6 +10,11 @@ public class Photograph : ScriptableObject
     private Sprite image;
 
     private bool isCryptidInPicture = false;
+    private bool isProofInPicture = false;
+
+    private string proofName;
+
+    private cryptid proofCryptid;
 
     public Sprite Image
     {
@@ -34,4 +39,19 @@ public class Photograph : ScriptableObject
             this.isCryptidInPicture = value;
         }
     }
+
+    public bool ProofInPicture
+    {
+        get
+        {
+            return isProofInPicture;
+        }
+        set
+        {
+            this.isProofInPicture = value;
+        }
+    }
+
+    public cryptid ProofCryptid { get => proofCryptid; set => proofCryptid = value; }
+    public string ProofName { get => proofName; set => proofName = value; }
 }

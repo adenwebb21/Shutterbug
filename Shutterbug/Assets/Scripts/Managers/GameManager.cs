@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum cryptid { mosstop, red, blue };
+
 public class GameManager : MonoBehaviour
 {
     #region Singleton
@@ -13,18 +15,27 @@ public class GameManager : MonoBehaviour
 
     public GameObject cryptidPrefab;
     public GameObject currentCryptid;
+    public cryptid cryptidEnum;
 
     public List<Photograph> currentPhotographs;
+
+    public List<GameObject> proofsInWorld;
 
     public Photograph bestPhoto;
     public int bestPhotoScore;
 
-    public int photoCap = 5;
+    public int photoCap = 10;
     private int m_currentPhotoCount = 0;
+    private int m_currentProofCount = 0;
 
     public LevelLoader levelLoader;
 
     public GameEvent enoughPhotos;
+
+    private float m_spawnChance = 0f;
+    private bool m_cryptidSpawned = false;
+
+    public GameObject initialSpawner;
 
     void Awake()
     {
@@ -38,9 +49,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void AssignProofs()
+    {
+        GameObject[] _temp = GameObject.FindGameObjectsWithTag("Proof");
+
+        for (int i = 0; i < _temp.Length; i++)
+        {
+            proofsInWorld.Add(_temp[i]);
+        }
+    }
+
     public void AssignCryptid(GameObject _chosenCryptid)
     {
         cryptidPrefab = _chosenCryptid;
+        cryptidEnum = cryptid.mosstop;
+
     }
 
     public void TakePhoto()
@@ -61,10 +84,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void UpdateProofs()
+    {
+        m_currentProofCount++;
+        UIManager.Instance.UpdateProofCount(m_currentProofCount);
+
+        float _check = Random.Range(0f, 100f);
+        if(_check < m_spawnChance && !m_cryptidSpawned)
+        {
+            currentCryptid.GetComponent<LocationSwitcher>().Respawn();
+            UIManager.Instance.EntryPrompt();
+            m_cryptidSpawned = true;
+        }
+
+        m_spawnChance = Mathf.Clamp(m_spawnChance + 25, 0f, 100f);
+    }
+
     public void ResetPhotos()
     {
         m_currentPhotoCount = 0;
+        m_spawnChance = 0f;
+        m_cryptidSpawned = false;
         currentPhotographs.Clear();
+        proofsInWorld.Clear();
     }
 
     private void Update()
