@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
     public GameObject entryPrompt;
     public GameObject exitPrompt;
 
+    public TextMeshProUGUI timesFled;
+
     public GameObject handBook;
     private bool m_handBookOpen = false;
 
@@ -87,6 +89,11 @@ public class UIManager : MonoBehaviour
     public void ExitPrompt()
     {
         exitPrompt.GetComponent<Animator>().Play("entrymessage_fade_in");
+    }
+
+    public void AddTimeFled()
+    {
+        timesFled.SetText(timesFled.text + "I");
     }
 
 

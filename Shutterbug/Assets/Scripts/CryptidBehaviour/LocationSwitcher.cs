@@ -49,6 +49,9 @@ public class LocationSwitcher : MonoBehaviour
     {
         m_moveCount++;
 
+        if(m_moveCount > 0)
+            UIManager.Instance.AddTimeFled();
+
         if(m_moveCount >= 3)
         {
             LeavePermanent();

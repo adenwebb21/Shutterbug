@@ -585,10 +585,10 @@ RectTransform:
   m_Father: {fileID: 1647442021}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: -555, y: 0}
-  m_SizeDelta: {x: 232.09, y: 360.21}
+  m_SizeDelta: {x: 232.09, y: -119.79001}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &141529593
 MonoBehaviour:
@@ -1937,7 +1937,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sightings
+  m_text: Times Fled
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d82ec7dc7641b04983e2406d93e3eb5, type: 2}
   m_sharedMaterial: {fileID: -3406886911760541473, guid: 8d82ec7dc7641b04983e2406d93e3eb5,
@@ -1966,7 +1966,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 28.4
+  m_fontSize: 25.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2007,10 +2007,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 578895418}
-    characterCount: 9
+    characterCount: 10
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -3113,7 +3113,7 @@ GameObject:
   - component: {fileID: 840988800}
   - component: {fileID: 840988799}
   m_Layer: 5
-  m_Name: Sightings (1)
+  m_Name: TimesFled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6825,6 +6825,7 @@ MonoBehaviour:
   promptText: {fileID: 1621226013}
   entryPrompt: {fileID: 644484571}
   exitPrompt: {fileID: 864894110}
+  timesFled: {fileID: 840988799}
   handBook: {fileID: 141529591}
 --- !u!1001 &1528900417
 PrefabInstance:
