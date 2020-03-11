@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject currentCryptid;
     public cryptid cryptidEnum;
 
+    public List<Cryptid> cryptidStats;
+
     public List<Photograph> currentPhotographs;
 
     public List<GameObject> proofsInWorld;

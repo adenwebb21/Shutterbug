@@ -18,7 +18,6 @@ public class LocationSwitcher : MonoBehaviour
     {
         m_moveCount = -1;
 
-        // do specialised finding here
         m_propertyBlock = gameObject.GetComponent<CryptidProperties>();
 
         m_spawns = GameObject.FindGameObjectsWithTag("SpawnPoint");
@@ -52,8 +51,14 @@ public class LocationSwitcher : MonoBehaviour
         if(m_moveCount > 0)
             UIManager.Instance.AddTimeFled();
 
-        if(m_moveCount >= 3)
+        if(m_moveCount >= m_propertyBlock.stats.MaxFleeCount)
         {
+            if (!m_propertyBlock.stats.KnownFleeCount)
+            {
+                m_propertyBlock.stats.KnownFleeCount = true;
+                m_propertyBlock.stats.KnownFleeCountThisRound = true;
+            }
+
             LeavePermanent();
         }
         else
@@ -63,7 +68,7 @@ public class LocationSwitcher : MonoBehaviour
             // Choose point based on preference
             int _randomIndex = 0;
 
-            while (_randomIndex == m_currentIndex || spawnLocations[_randomIndex].spawnRegion == spawnLocations[m_currentIndex].spawnRegion)
+            while (_randomIndex == m_currentIndex || spawnLocations[_randomIndex].spawnRegion == spawnLocations[m_currentIndex].spawnRegion || !m_propertyBlock.stats.PreferredRegions.Contains(spawnLocations[_randomIndex].spawnRegion))
             {
                 _randomIndex = Random.Range(0, spawnLocations.Count);
             }

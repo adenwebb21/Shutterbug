@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ce7b0c99a5c814bb90d0e1b604f130, type: 3}
+  m_Name: Mosstop
+  m_EditorClassIdentifier: 
+  m_currentPerception: 0
+  m_defaultPerception: 55
+  m_maxFleeCount: 3
+  m_knownFleeCount: 0
+  m_knownFleeCountThisRound: 0
+  m_preferredRegions: 0300000002000000
+  m_knownPreferredRegions: 0000
+  m_knownPreferredRegionsThisRound: 0000

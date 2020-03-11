@@ -82,7 +82,7 @@ public class CryptidDetection : MonoBehaviour
         // Handling stealth meter
         if (m_detectionTimer <= m_detectionThreshold && m_hasDetectedPlayer)
         {
-            float _scalar = 1 - (m_player.GetComponent<PlayerStealth>().stealthValue / m_propertyBlock.currentPerception);
+            float _scalar = 1 - (m_player.GetComponent<PlayerStealth>().stealthValue / m_propertyBlock.stats.CurrentPerception);
             m_detectionTimer += Time.deltaTime * _scalar;
             m_detectionTimer += m_detectionTimer / 200;
             UIManager.Instance.UpdateStealthFillAmount(m_detectionTimer / m_detectionThreshold);
@@ -96,7 +96,7 @@ public class CryptidDetection : MonoBehaviour
         }
         else if (m_detectionTimer > 0f && !m_hasDetectedPlayer)
         {
-            float _scalar = m_propertyBlock.currentPerception / m_player.GetComponent<PlayerStealth>().stealthValue;
+            float _scalar = m_propertyBlock.stats.CurrentPerception / m_player.GetComponent<PlayerStealth>().stealthValue;
             m_detectionTimer -= Time.deltaTime * _scalar;
             UIManager.Instance.UpdateStealthFillAmount(m_detectionTimer / m_detectionThreshold);
         }
@@ -206,11 +206,11 @@ public class CryptidDetection : MonoBehaviour
     private bool PlayerDetected(bool _lineOfSight)
     {
         float _currentPlayerStealthValue = m_player.GetComponent<PlayerStealth>().stealthValue;   
-        m_propertyBlock.currentPerception = m_propertyBlock.defaultPerception;
+        m_propertyBlock.stats.CurrentPerception = m_propertyBlock.stats.DefaultPerception;
 
         if (!_lineOfSight)
         {
-            m_propertyBlock.currentPerception = m_propertyBlock.defaultPerception / 4;
+            m_propertyBlock.stats.CurrentPerception = m_propertyBlock.stats.DefaultPerception / 4;
         }
 
         //_currentPlayerStealthValue = Mathf.Clamp(_currentPlayerStealthValue, 0f, 100f);
@@ -219,18 +219,18 @@ public class CryptidDetection : MonoBehaviour
 
         if(m_distanceModifier < 0.2f)
         {
-            m_propertyBlock.currentPerception = m_propertyBlock.currentPerception * m_distanceModifier;
+            m_propertyBlock.stats.CurrentPerception = m_propertyBlock.stats.CurrentPerception * m_distanceModifier;
         }
         else if(m_distanceModifier > 0.8f)
         {
-            m_propertyBlock.currentPerception = m_propertyBlock.currentPerception * (1 + (m_distanceModifier * 4) - 0.5f);
+            m_propertyBlock.stats.CurrentPerception = m_propertyBlock.stats.CurrentPerception * (1 + (m_distanceModifier * 4) - 0.5f);
         }
         else
         {
-            m_propertyBlock.currentPerception = m_propertyBlock.currentPerception * (1 + (m_distanceModifier * 2) - 0.5f);
+            m_propertyBlock.stats.CurrentPerception = m_propertyBlock.stats.CurrentPerception * (1 + (m_distanceModifier * 2) - 0.5f);
         }
         
-        if (_currentPlayerStealthValue < m_propertyBlock.currentPerception)
+        if (_currentPlayerStealthValue < m_propertyBlock.stats.CurrentPerception)
         {       
             return true;
         }

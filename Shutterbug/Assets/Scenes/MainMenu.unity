@@ -832,6 +832,7 @@ MonoBehaviour:
   bestPhotoImage: {fileID: 1462134828}
   bestPhotoScore: {fileID: 175397169}
   secondaryCanvas: {fileID: 1903237411}
+  cryptidDescription: {fileID: 1949544125}
 --- !u!1 &1248255324
 GameObject:
   m_ObjectHideFlags: 0
@@ -1798,9 +1799,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1690500619768177579, guid: 20d5a1f9875d2474f9616d2caa1c233d,
         type: 3}
+      propertyPath: cryptidStats.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690500619768177579, guid: 20d5a1f9875d2474f9616d2caa1c233d,
+        type: 3}
       propertyPath: photoCap
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1690500619768177579, guid: 20d5a1f9875d2474f9616d2caa1c233d,
+        type: 3}
+      propertyPath: cryptidStats.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: c5c21049e4a0f5149b54b6b846d3f590,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20d5a1f9875d2474f9616d2caa1c233d, type: 3}
 --- !u!114 &1843524548 stripped
@@ -2024,8 +2036,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0023, y: -0.336}
-  m_SizeDelta: {x: 232.5279, y: 35.7231}
+  m_AnchoredPosition: {x: 0.0023, y: -0.557}
+  m_SizeDelta: {x: 232.5279, y: 100.1921}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1949544125
 MonoBehaviour:
@@ -2045,7 +2057,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Description
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8d82ec7dc7641b04983e2406d93e3eb5, type: 2}
   m_sharedMaterial: {fileID: -3406886911760541473, guid: 8d82ec7dc7641b04983e2406d93e3eb5,
@@ -2074,14 +2086,14 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 28.2
-  m_fontSizeBase: 28.2
+  m_fontSize: 11
+  m_fontSizeBase: 11
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_textAlignment: 514
+  m_textAlignment: 257
   m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
@@ -2091,7 +2103,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -2115,13 +2127,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1949544125}
-    characterCount: 11
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -2346,6 +2358,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770485454800705115, guid: daf2901105d713549bc73a82a370646a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daf2901105d713549bc73a82a370646a, type: 3}
