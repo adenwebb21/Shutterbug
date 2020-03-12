@@ -49,7 +49,7 @@ public class TakePhoto : MonoBehaviour
             _tempPhotograph.PhotoRegion = GameManager.Instance.currentCryptid.GetComponent<LocationSwitcher>().CurrentSpawnPoint.spawnRegion;
             int _indexOf = GameManager.Instance.currentCryptid.GetComponent<CryptidProperties>().stats.PreferredRegions.IndexOf(_tempPhotograph.PhotoRegion);
 
-            if(_indexOf != -1)
+            if(_indexOf != -1 && !GameManager.Instance.currentCryptid.GetComponent<CryptidProperties>().stats.KnownPreferredRegions[_indexOf])
             {
                 GameManager.Instance.currentCryptid.GetComponent<CryptidProperties>().stats.KnownPreferredRegions[_indexOf] = true;
                 GameManager.Instance.currentCryptid.GetComponent<CryptidProperties>().stats.KnownPreferredRegionsThisRound[_indexOf] = true;

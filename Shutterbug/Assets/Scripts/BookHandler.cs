@@ -18,35 +18,35 @@ public class BookHandler : MonoBehaviour
         string _description = "";
 
         foreach(Cryptid _cryptidStat in GameManager.Instance.cryptidStats)
-        {          
-            if(_cryptidStat.KnownFleeCount)
-            {
-                InstantText(cryptidDescription, "Seems to flee after 3 sightings\n");
-            }
-            else if (_cryptidStat.KnownFleeCountThisRound)
+        {
+            if(_cryptidStat.KnownFleeCountThisRound)
             {
                 _description += "Seems to flee after 3 sightings\n";
                 _cryptidStat.KnownFleeCountThisRound = false;
             }
-           
-            if (_cryptidStat.KnownPreferredRegions[0])
+            else if(_cryptidStat.KnownFleeCount)
             {
-                InstantText(cryptidDescription, "This cryptid seems to enjoy the " + _cryptidStat.PreferredRegions[0].ToString() + " area\n");
+                InstantText(cryptidDescription, "Seems to flee after 3 sightings\n");
             }
-            else if (_cryptidStat.KnownPreferredRegionsThisRound[0])
+
+            if (_cryptidStat.KnownPreferredRegionsThisRound[0])
             {
                 _description += "This cryptid seems to enjoy the " + _cryptidStat.PreferredRegions[0].ToString() + " area\n";
                 _cryptidStat.KnownPreferredRegionsThisRound[0] = false;
             }
-
-            if (_cryptidStat.KnownPreferredRegions[1])
+            else if (_cryptidStat.KnownPreferredRegions[0])
             {
-                InstantText(cryptidDescription, "This cryptid seems to enjoy the " + _cryptidStat.PreferredRegions[1].ToString() + " area\n");
+                InstantText(cryptidDescription, "This cryptid seems to enjoy the " + _cryptidStat.PreferredRegions[0].ToString() + " area\n");
             }
-            else if (_cryptidStat.KnownPreferredRegionsThisRound[1])
+
+            if (_cryptidStat.KnownPreferredRegionsThisRound[1])
             {
                 _description += "This cryptid seems to enjoy the " + _cryptidStat.PreferredRegions[1].ToString() + " area\n";
                 _cryptidStat.KnownPreferredRegionsThisRound[1] = false;
+            }
+            else if (_cryptidStat.KnownPreferredRegions[1])
+            {
+                InstantText(cryptidDescription, "This cryptid seems to enjoy the " + _cryptidStat.PreferredRegions[1].ToString() + " area\n");
             }
 
             BuildText(cryptidDescription, _description);
