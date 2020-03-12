@@ -16,6 +16,8 @@ public class Photograph : ScriptableObject
 
     private cryptid proofCryptid;
 
+    private Region photoRegion;
+
     public Sprite Image
     {
         get
@@ -54,4 +56,5 @@ public class Photograph : ScriptableObject
 
     public cryptid ProofCryptid { get => proofCryptid; set => proofCryptid = value; }
     public string ProofName { get => proofName; set => proofName = value; }
+    public Region PhotoRegion { get => photoRegion; set => photoRegion = value; }
 }

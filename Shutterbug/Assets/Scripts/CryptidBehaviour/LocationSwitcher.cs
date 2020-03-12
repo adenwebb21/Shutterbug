@@ -14,6 +14,8 @@ public class LocationSwitcher : MonoBehaviour
 
     private int m_moveCount = -1;
 
+    public SpawnPoint CurrentSpawnPoint { get => m_currentSpawnPoint; set => m_currentSpawnPoint = value; }
+
     private void Start()
     {
         m_moveCount = -1;

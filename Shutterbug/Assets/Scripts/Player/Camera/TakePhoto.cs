@@ -43,6 +43,19 @@ public class TakePhoto : MonoBehaviour
         Photograph _tempPhotograph = ScriptableObject.CreateInstance<Photograph>();
         _tempPhotograph.Image = _newPhoto;
         _tempPhotograph.CryptidInPicture = IsCryptidVisible(GameManager.Instance.currentCryptid);
+        
+        if(_tempPhotograph.CryptidInPicture)
+        {
+            _tempPhotograph.PhotoRegion = GameManager.Instance.currentCryptid.GetComponent<LocationSwitcher>().CurrentSpawnPoint.spawnRegion;
+            int _indexOf = GameManager.Instance.currentCryptid.GetComponent<CryptidProperties>().stats.PreferredRegions.IndexOf(_tempPhotograph.PhotoRegion);
+
+            if(_indexOf != -1)
+            {
+                GameManager.Instance.currentCryptid.GetComponent<CryptidProperties>().stats.KnownPreferredRegions[_indexOf] = true;
+                GameManager.Instance.currentCryptid.GetComponent<CryptidProperties>().stats.KnownPreferredRegionsThisRound[_indexOf] = true;
+            }
+        }
+            
 
         bool _tempIsVisible = false;
 
