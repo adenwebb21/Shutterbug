@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour
     public void ResetPhotos()
     {
         m_currentPhotoCount = 0;
+        m_currentProofCount = 0;
         m_spawnChance = 0f;
         m_cryptidSpawned = false;
         currentPhotographs.Clear();
