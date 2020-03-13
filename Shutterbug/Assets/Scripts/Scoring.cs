@@ -48,10 +48,15 @@ public class Scoring : MonoBehaviour
         //        m_bestPhoto = chosenProofs[i];
         //    }
         //}
-        m_bestPhoto = chosenSighting;
-        GameManager.Instance.bestPhotoScore = m_currentScore;
-        GameManager.Instance.bestPhoto = m_bestPhoto.GetComponent<PhotoData>().photoData;
-        GameManager.Instance.levelLoader.LoadMainMenu();     
+
+        if(GameManager.Instance.bestPhotoScore < m_currentScore)
+        {
+            m_bestPhoto = chosenSighting;
+            GameManager.Instance.bestPhotoScore = m_currentScore;
+            GameManager.Instance.bestPhoto = m_bestPhoto.GetComponent<PhotoData>().photoData;           
+        }
+
+        GameManager.Instance.levelLoader.LoadMainMenu();
     }
 
     public void ResetValues()
