@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI timesFled;
 
     public GameObject handBook;
+    public GameObject handBookDiscoveryText;
+    public GameObject discoveriesObject;
     private bool m_handBookOpen = false;
 
     void Awake()
@@ -59,6 +61,8 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         promptText.SetActive(false);
+
+        CheckNewDiscoveries();
     }
 
     public void UpdatePictureCount(int _newPictureCount)
@@ -94,6 +98,33 @@ public class UIManager : MonoBehaviour
     public void AddTimeFled()
     {
         timesFled.SetText(timesFled.text + "I");
+    }
+
+    public void CheckNewDiscoveries()
+    {
+        GameObject _current = GameManager.Instance.currentCryptid;
+        Cryptid _stats = _current.GetComponent<CryptidProperties>().stats;
+
+        if(_stats.KnownFleeCount)
+        {
+            GameObject _text = Instantiate(handBookDiscoveryText, discoveriesObject.transform);
+            _text.GetComponent<TextMeshProUGUI>().text = "This cryptid tends to leave permanently after " + _stats.MaxFleeCount + " sightings";
+        }
+
+        int _counter = 0;
+
+        foreach (bool _status in _stats.KnownPreferredRegions)
+        {
+            
+
+            if(_status)
+            {
+                GameObject _text = Instantiate(handBookDiscoveryText, discoveriesObject.transform);
+                _text.GetComponent<TextMeshProUGUI>().text = "This cryptid seems to like the " + _stats.PreferredRegions[_counter].ToString() + " area";
+            }
+
+            _counter++;
+        }
     }
 
 

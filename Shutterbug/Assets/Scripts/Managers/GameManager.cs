@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject currentCryptid;
     public cryptid cryptidEnum;
 
+    public List<Cryptid> cryptidStats;
+
     public List<Photograph> currentPhotographs;
 
     public List<GameObject> proofsInWorld;
@@ -103,6 +105,7 @@ public class GameManager : MonoBehaviour
     public void ResetPhotos()
     {
         m_currentPhotoCount = 0;
+        m_currentProofCount = 0;
         m_spawnChance = 0f;
         m_cryptidSpawned = false;
         currentPhotographs.Clear();

@@ -154,8 +154,7 @@ MonoBehaviour:
   - {fileID: 2958546698064839356}
   - {fileID: 7139444190500231488}
   - {fileID: 5452379166946903702}
-  currentPerception: 55
-  defaultPerception: 55
+  stats: {fileID: 11400000, guid: c5c21049e4a0f5149b54b6b846d3f590, type: 2}
   currentState: 0
 --- !u!114 &2731088007266940075
 MonoBehaviour:

@@ -43,21 +43,53 @@ public class TakePhoto : MonoBehaviour
         Photograph _tempPhotograph = ScriptableObject.CreateInstance<Photograph>();
         _tempPhotograph.Image = _newPhoto;
         _tempPhotograph.CryptidInPicture = IsCryptidVisible(GameManager.Instance.currentCryptid);
+        
+        if(_tempPhotograph.CryptidInPicture)
+        {
+            _tempPhotograph.PhotoRegion = GameManager.Instance.currentCryptid.GetComponent<LocationSwitcher>().CurrentSpawnPoint.spawnRegion;
+            int _indexOf = GameManager.Instance.currentCryptid.GetComponent<CryptidProperties>().stats.PreferredRegions.IndexOf(_tempPhotograph.PhotoRegion);
+
+            if(_indexOf != -1 && !GameManager.Instance.currentCryptid.GetComponent<CryptidProperties>().stats.KnownPreferredRegions[_indexOf])
+            {
+                GameManager.Instance.currentCryptid.GetComponent<CryptidProperties>().stats.KnownPreferredRegions[_indexOf] = true;
+                GameManager.Instance.currentCryptid.GetComponent<CryptidProperties>().stats.KnownPreferredRegionsThisRound[_indexOf] = true;
+            }
+        }
+            
 
         bool _tempIsVisible = false;
+
+        List<GameObject> _tempProofs = new List<GameObject>();
 
         foreach(GameObject _proof in GameManager.Instance.proofsInWorld)
         {
             if(IsObjectVisible(_proof))
             {
-                _tempIsVisible = true;
-                _tempPhotograph.ProofCryptid = _proof.GetComponent<ProofData>().cryptid;
-                _tempPhotograph.ProofName = _proof.name;
-                break;
+                _tempProofs.Add(_proof);
             }
         }
 
-        if(_tempIsVisible)
+        if(_tempProofs.Count > 0)
+        {
+            GameObject _closest = _tempProofs[0];
+            float _distance = 10000f;
+
+            for (int i = 0; i < _tempProofs.Count; i++)
+            {
+                if (Vector3.Distance(transform.position, _tempProofs[i].transform.position) < _distance)
+                {
+                    _distance = Vector3.Distance(transform.position, _tempProofs[i].transform.position);
+                    _closest = _tempProofs[i];
+                }
+            }
+
+            _tempIsVisible = true;
+            _tempPhotograph.ProofCryptid = _closest.GetComponent<ProofData>().cryptid;
+            _tempPhotograph.ProofName = _closest.name;
+            Debug.Log(_tempPhotograph.ProofCryptid);
+        }
+        
+        if (_tempIsVisible)
         {
             GameManager.Instance.UpdateProofs();
         }
