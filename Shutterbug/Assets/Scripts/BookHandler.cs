@@ -59,15 +59,11 @@ public class BookHandler : MonoBehaviour
         {
             UpdateDetails();
         }
-        else
-        {
-            secondaryCanvas.SetActive(false);
-        }
     }
 
     public void UpdateDetails()
     {
-        secondaryCanvas.SetActive(true);
+        bestPhotoImage.GetComponent<Image>().color = new Color(255, 255, 255);
         bestPhotoImage.GetComponent<Image>().sprite = GameManager.Instance.bestPhoto.Image;
         bestPhotoScore.GetComponent<TextMeshProUGUI>().text = "SCORE: " + GameManager.Instance.bestPhotoScore;
     }
