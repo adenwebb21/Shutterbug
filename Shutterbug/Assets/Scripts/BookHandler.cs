@@ -9,13 +9,23 @@ public class BookHandler : MonoBehaviour
     public GameObject bestPhotoImage;
     public GameObject bestPhotoScore;
 
-    public GameObject secondaryCanvas;
-
     public TextMeshProUGUI cryptidDescription;
+
+    //public GameObject hinge;
+    //private Animator m_bookAnimator, m_hingeAnimator;
 
     private void Start()
     {
+       // m_bookAnimator = gameObject.GetComponent<Animator>();
+        //m_hingeAnimator = hinge.GetComponent<Animator>();
+
         string _description = "";
+
+        if(GameManager.Instance.currentBuildIndex == 0)
+        {
+            //m_bookAnimator.Play("slide_menu_book");
+            //m_hingeAnimator.Play("open_menu_book");
+        }
 
         foreach(Cryptid _cryptidStat in GameManager.Instance.cryptidStats)
         {
