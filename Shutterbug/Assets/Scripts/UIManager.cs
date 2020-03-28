@@ -46,12 +46,12 @@ public class UIManager : MonoBehaviour
         {
             if(!m_handBookOpen)
             {
-                handBook.GetComponent<Animator>().Play("handbook_in");
+                handBook.GetComponent<Animator>().Play("handbook_in_from_bottom");
                 m_handBookOpen = true;
             }
             else
             {
-                handBook.GetComponent<Animator>().Play("handbook_out");
+                handBook.GetComponent<Animator>().Play("handbook_out_to_bottom");
                 m_handBookOpen = false;
             }
             

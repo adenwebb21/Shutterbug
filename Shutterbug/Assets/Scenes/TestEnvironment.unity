@@ -6717,7 +6717,7 @@ MonoBehaviour:
   entryPrompt: {fileID: 644484571}
   exitPrompt: {fileID: 864894110}
   timesFled: {fileID: 840988799}
-  handBook: {fileID: 141529591}
+  handBook: {fileID: 503987560}
   handBookDiscoveryText: {fileID: 7327512957577021878, guid: 6ceac1e16583bf040a36a62e60086108,
     type: 3}
   discoveriesObject: {fileID: 120044754}
