@@ -295,6 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cryptid: 2
+  identifier: blue3
 --- !u!1001 &48464732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -599,6 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cryptid: 2
+  identifier: blue1
 --- !u!4 &127833193 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 44884af1ac1d64d42902da40268ba120,
@@ -1743,6 +1745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cryptid: 1
+  identifier: red2
 --- !u!1001 &503987558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4002,6 +4005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cryptid: 1
+  identifier: red1
 --- !u!1001 &1024284151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4237,6 +4241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cryptid: 2
+  identifier: blue2
 --- !u!4 &1058326398 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 3681543e5b0f59742b73073cb379cdc6,
@@ -5473,7 +5478,7 @@ PrefabInstance:
     - target: {fileID: 3770485454800705115, guid: daf2901105d713549bc73a82a370646a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daf2901105d713549bc73a82a370646a, type: 3}
@@ -5657,6 +5662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cryptid: 0
+  identifier: moss2
 --- !u!4 &1272961178 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 88b5bfec6f1bd17439b2f4339902dca6,
@@ -6127,6 +6133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cryptid: 1
+  identifier: red3
 --- !u!1 &1361242541
 GameObject:
   m_ObjectHideFlags: 0
@@ -6667,6 +6674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cryptid: 0
+  identifier: moss3
 --- !u!1 &1527173253
 GameObject:
   m_ObjectHideFlags: 0
@@ -8155,6 +8163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cryptid: 0
+  identifier: moss1
 --- !u!1 &2031423449
 GameObject:
   m_ObjectHideFlags: 0
@@ -8517,6 +8526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cryptid: 2
+  identifier: blue4
 --- !u!1001 &2108415897
 PrefabInstance:
   m_ObjectHideFlags: 0

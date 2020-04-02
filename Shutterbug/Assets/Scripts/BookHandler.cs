@@ -9,6 +9,8 @@ public class BookHandler : MonoBehaviour
     public GameObject bestPhotoImage;
     public GameObject bestPhotoScore;
 
+    public List<BookEvidence> evidencePhotos;
+
     public TextMeshProUGUI cryptidDescription;
 
     //public GameObject hinge;
@@ -94,6 +96,17 @@ public class BookHandler : MonoBehaviour
         {
             _textElement.text = string.Concat(_textElement.text, _textToWrite[i]);
             yield return new WaitForSeconds(0.08f);
+        }
+    }
+
+    public void OverlayEvidence(string _identifier, Sprite _photo)
+    {
+        foreach(BookEvidence _evidence in evidencePhotos)
+        {
+            if(_evidence._evidenceIdentifier == _identifier)
+            {
+                _evidence.gameObject.GetComponent<Image>().sprite = _photo;
+            }
         }
     }
 }

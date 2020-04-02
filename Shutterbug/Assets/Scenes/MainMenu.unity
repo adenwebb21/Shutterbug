@@ -767,22 +767,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1690500619768177579, guid: 20d5a1f9875d2474f9616d2caa1c233d,
-        type: 3}
-      propertyPath: cryptidStats.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1690500619768177579, guid: 20d5a1f9875d2474f9616d2caa1c233d,
-        type: 3}
-      propertyPath: photoCap
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1690500619768177579, guid: 20d5a1f9875d2474f9616d2caa1c233d,
-        type: 3}
-      propertyPath: cryptidStats.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: c5c21049e4a0f5149b54b6b846d3f590,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20d5a1f9875d2474f9616d2caa1c233d, type: 3}
 --- !u!114 &1843524548 stripped
