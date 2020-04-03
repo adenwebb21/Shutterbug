@@ -645,7 +645,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -555, y: -0.0016784668}
+  m_AnchoredPosition: {x: -555.00006, y: -0.0017089844}
   m_SizeDelta: {x: 232.1, y: -368.68}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &141529593
@@ -1753,51 +1753,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1647442021}
     m_Modifications:
-    - target: {fileID: 5432094378561908677, guid: 8517b0f0afe5db74cb44e3524abe621b,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432094378561908677, guid: 8517b0f0afe5db74cb44e3524abe621b,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432094378561908677, guid: 8517b0f0afe5db74cb44e3524abe621b,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432094378561908677, guid: 8517b0f0afe5db74cb44e3524abe621b,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432094378707626880, guid: 8517b0f0afe5db74cb44e3524abe621b,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432094378707626880, guid: 8517b0f0afe5db74cb44e3524abe621b,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432094378707626880, guid: 8517b0f0afe5db74cb44e3524abe621b,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432094378707626880, guid: 8517b0f0afe5db74cb44e3524abe621b,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432094378707626880, guid: 8517b0f0afe5db74cb44e3524abe621b,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5432094379169381081, guid: 8517b0f0afe5db74cb44e3524abe621b,
         type: 3}
       propertyPath: m_Name
@@ -1908,26 +1863,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5432094380448538158, guid: 8517b0f0afe5db74cb44e3524abe621b,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432094380448538158, guid: 8517b0f0afe5db74cb44e3524abe621b,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432094380448538158, guid: 8517b0f0afe5db74cb44e3524abe621b,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5432094380448538158, guid: 8517b0f0afe5db74cb44e3524abe621b,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8517b0f0afe5db74cb44e3524abe621b, type: 3}
 --- !u!224 &503987559 stripped
@@ -1942,25 +1877,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 503987558}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &503987561
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503987560}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 46b2ec2f6a60ac84b98cd023ac73ae96, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &551878418
 PrefabInstance:
   m_ObjectHideFlags: 0
