@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MainMenuController : MonoBehaviour
 {
-    public Animator book, frontCover, firstPage;
+    public Animator book, frontCover, firstPage, bookEdge;
 
     void Update()
     {
@@ -18,5 +18,6 @@ public class MainMenuController : MonoBehaviour
     {
         book.Play("move_book_offcentre");
         frontCover.Play("front_dissapear");
+        bookEdge.Play("cover_edge_open");
     }
 }
