@@ -106,7 +106,7 @@ public class BookHandler : MonoBehaviour
             if(_evidence._evidenceIdentifier == _identifier)
             {
                 _evidence.gameObject.GetComponent<Image>().sprite = _photo;
-                _evidence.gameObject.GetComponent<Image>().color = new Color(255, 255, 255);
+                _evidence.gameObject.GetComponent<Image>().color = new Color(255, 255, 255, 255);
             }
         }
     }
