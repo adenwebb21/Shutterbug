@@ -9,13 +9,25 @@ public class BookHandler : MonoBehaviour
     public GameObject bestPhotoImage;
     public GameObject bestPhotoScore;
 
-    public GameObject secondaryCanvas;
+    public List<BookEvidence> evidencePhotos;
 
     public TextMeshProUGUI cryptidDescription;
 
+    //public GameObject hinge;
+    //private Animator m_bookAnimator, m_hingeAnimator;
+
     private void Start()
     {
+       // m_bookAnimator = gameObject.GetComponent<Animator>();
+        //m_hingeAnimator = hinge.GetComponent<Animator>();
+
         string _description = "";
+
+        if(GameManager.Instance.currentBuildIndex == 0)
+        {
+            //m_bookAnimator.Play("slide_menu_book");
+            //m_hingeAnimator.Play("open_menu_book");
+        }
 
         foreach(Cryptid _cryptidStat in GameManager.Instance.cryptidStats)
         {
@@ -59,15 +71,11 @@ public class BookHandler : MonoBehaviour
         {
             UpdateDetails();
         }
-        else
-        {
-            secondaryCanvas.SetActive(false);
-        }
     }
 
     public void UpdateDetails()
     {
-        secondaryCanvas.SetActive(true);
+        bestPhotoImage.GetComponent<Image>().color = new Color(255, 255, 255);
         bestPhotoImage.GetComponent<Image>().sprite = GameManager.Instance.bestPhoto.Image;
         bestPhotoScore.GetComponent<TextMeshProUGUI>().text = "SCORE: " + GameManager.Instance.bestPhotoScore;
     }
@@ -88,6 +96,18 @@ public class BookHandler : MonoBehaviour
         {
             _textElement.text = string.Concat(_textElement.text, _textToWrite[i]);
             yield return new WaitForSeconds(0.08f);
+        }
+    }
+
+    public void OverlayEvidence(string _identifier, Sprite _photo)
+    {
+        foreach(BookEvidence _evidence in evidencePhotos)
+        {
+            if(_evidence._evidenceIdentifier == _identifier)
+            {
+                _evidence.gameObject.GetComponent<Image>().sprite = _photo;
+                _evidence.gameObject.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+            }
         }
     }
 }

@@ -7,6 +7,14 @@ public class TakePhoto : MonoBehaviour
 {
     private int fileCounter = 0;
 
+    private BookHandler m_handbook;
+    private string m_tempIdentifier;
+
+    private void Start()
+    {
+        m_handbook = GameObject.FindGameObjectWithTag("Handbook").GetComponent<BookHandler>();
+    }
+
     private void LateUpdate()
     {
         if (Input.GetMouseButtonDown(0))
@@ -86,7 +94,8 @@ public class TakePhoto : MonoBehaviour
             _tempIsVisible = true;
             _tempPhotograph.ProofCryptid = _closest.GetComponent<ProofData>().cryptid;
             _tempPhotograph.ProofName = _closest.name;
-            Debug.Log(_tempPhotograph.ProofCryptid);
+
+            m_tempIdentifier = _closest.GetComponent<ProofData>().identifier;
         }
         
         if (_tempIsVisible)
@@ -97,6 +106,8 @@ public class TakePhoto : MonoBehaviour
         _tempPhotograph.ProofInPicture = _tempIsVisible;
         GameManager.Instance.currentPhotographs.Add(_tempPhotograph);
         GameManager.Instance.TakePhoto();
+
+        m_handbook.OverlayEvidence(m_tempIdentifier, _tempPhotograph.Image);
     }
 
     private bool IsCryptidVisible(GameObject _cryptid)

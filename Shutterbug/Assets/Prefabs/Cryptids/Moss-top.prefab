@@ -156,6 +156,11 @@ MonoBehaviour:
   - {fileID: 5452379166946903702}
   stats: {fileID: 11400000, guid: c5c21049e4a0f5149b54b6b846d3f590, type: 2}
   currentState: 0
+  relevantIdentifiers:
+  - moss1
+  - moss2
+  - moss3
+  relevantProof: []
 --- !u!114 &2731088007266940075
 MonoBehaviour:
   m_ObjectHideFlags: 0

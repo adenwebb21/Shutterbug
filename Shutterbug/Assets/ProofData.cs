@@ -5,4 +5,5 @@ using UnityEngine;
 public class ProofData : MonoBehaviour
 {
     public cryptid cryptid;
+    public string identifier;
 }

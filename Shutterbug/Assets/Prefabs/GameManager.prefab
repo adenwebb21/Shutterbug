@@ -44,16 +44,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1995aa9301592dc4da53315bfca9c0b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentBuildIndex: 0
   cryptidPrefab: {fileID: 5685069052704964246, guid: cb257a35f591ddb4c9528f29be5f32dc,
     type: 3}
   currentCryptid: {fileID: 0}
+  cryptidEnum: 0
+  cryptidStats:
+  - {fileID: 11400000, guid: c5c21049e4a0f5149b54b6b846d3f590, type: 2}
   currentPhotographs: []
-  proofs: []
+  proofsInWorld: []
   bestPhoto: {fileID: 0}
   bestPhotoScore: 0
-  photoCap: 5
+  photoCap: 10
   levelLoader: {fileID: 0}
   enoughPhotos: {fileID: 11400000, guid: 90dea83ac10da2b44b80bed3c67fed73, type: 2}
+  initialSpawner: {fileID: 0}
 --- !u!114 &4946549901017991337
 MonoBehaviour:
   m_ObjectHideFlags: 0

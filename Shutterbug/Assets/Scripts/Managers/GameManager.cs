@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get => s_instance; set => s_instance = value; }
     #endregion
 
+    public int currentBuildIndex;
+
     public GameObject cryptidPrefab;
     public GameObject currentCryptid;
     public cryptid cryptidEnum;
@@ -114,13 +116,15 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 2)
+        currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
+
+        if (currentBuildIndex == 2)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
 
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (currentBuildIndex == 0)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
