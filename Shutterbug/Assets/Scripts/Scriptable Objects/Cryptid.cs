@@ -19,6 +19,8 @@ public class Cryptid : ScriptableObject
     [SerializeField] private bool[] m_knownPreferredRegions;
     [SerializeField] private bool[] m_knownPreferredRegionsThisRound;
 
+    [SerializeField] private List<Photograph> evidencePhotos;
+
     public float CurrentPerception { get => m_currentPerception; set => m_currentPerception = value; }
     public float DefaultPerception { get => m_defaultPerception; set => m_defaultPerception = value; }
     public int MaxFleeCount { get => m_maxFleeCount; set => m_maxFleeCount = value; }
@@ -27,4 +29,5 @@ public class Cryptid : ScriptableObject
     public List<Region> PreferredRegions { get => m_preferredRegions; set => m_preferredRegions = value; }
     public bool[] KnownPreferredRegions { get => m_knownPreferredRegions; set => m_knownPreferredRegions = value; }
     public bool[] KnownPreferredRegionsThisRound { get => m_knownPreferredRegionsThisRound; set => m_knownPreferredRegionsThisRound = value; }
+    public List<Photograph> EvidencePhotos { get => evidencePhotos; set => evidencePhotos = value; }
 }
