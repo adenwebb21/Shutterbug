@@ -213,10 +213,6 @@ public class CryptidDetection : MonoBehaviour
             m_propertyBlock.stats.CurrentPerception = m_propertyBlock.stats.DefaultPerception / 4;
         }
 
-        //_currentPlayerStealthValue = Mathf.Clamp(_currentPlayerStealthValue, 0f, 100f);
-
-        //m_player.GetComponent<PlayerStealth>().stealthValue = _currentPlayerStealthValue;
-
         if(m_distanceModifier < 0.2f)
         {
             m_propertyBlock.stats.CurrentPerception = m_propertyBlock.stats.CurrentPerception * m_distanceModifier;
