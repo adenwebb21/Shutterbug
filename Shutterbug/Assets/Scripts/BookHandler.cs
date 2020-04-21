@@ -62,6 +62,15 @@ public class BookHandler : MonoBehaviour
             }
 
             BuildText(cryptidDescription, _description);
+
+            if(GameManager.Instance.cryptidStats[0].EvidencePhotos.Count > 0)
+            {
+                for (int i = 0; i < GameManager.Instance.cryptidStats[0].EvidencePhotos.Count; i++)
+                {
+                    evidencePhotos[i].gameObject.GetComponent<Image>().sprite = GameManager.Instance.cryptidStats[0].EvidencePhotos[i].Image;
+                    evidencePhotos[i].gameObject.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+                }
+            }      
         }
     }
 
@@ -99,14 +108,16 @@ public class BookHandler : MonoBehaviour
         }
     }
 
-    public void OverlayEvidence(string _identifier, Sprite _photo)
+    public void OverlayEvidence(string _identifier, Photograph _photo)
     {
         foreach(BookEvidence _evidence in evidencePhotos)
         {
-            if(_evidence._evidenceIdentifier == _identifier)
+            if(_evidence._evidenceIdentifier == _identifier && _evidence.gameObject.GetComponent<Image>().sprite == null)
             {
-                _evidence.gameObject.GetComponent<Image>().sprite = _photo;
+                _evidence.gameObject.GetComponent<Image>().sprite = _photo.Image;
                 _evidence.gameObject.GetComponent<Image>().color = new Color(255, 255, 255, 255);
+
+                GameManager.Instance.cryptidStats[0].EvidencePhotos.Add(_photo);
             }
         }
     }

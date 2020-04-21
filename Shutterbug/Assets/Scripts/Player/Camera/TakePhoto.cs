@@ -107,7 +107,7 @@ public class TakePhoto : MonoBehaviour
         GameManager.Instance.currentPhotographs.Add(_tempPhotograph);
         GameManager.Instance.TakePhoto();
 
-        m_handbook.OverlayEvidence(m_tempIdentifier, _tempPhotograph.Image);
+        m_handbook.OverlayEvidence(m_tempIdentifier, _tempPhotograph);
     }
 
     private bool IsCryptidVisible(GameObject _cryptid)

@@ -20,3 +20,6 @@ MonoBehaviour:
   m_preferredRegions: 0300000002000000
   m_knownPreferredRegions: 0000
   m_knownPreferredRegionsThisRound: 0000
+  evidencePhotos:
+  - {fileID: 0}
+  - {fileID: 0}
