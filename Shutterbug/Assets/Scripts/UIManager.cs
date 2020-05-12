@@ -62,7 +62,7 @@ public class UIManager : MonoBehaviour
     {
         promptText.SetActive(false);
 
-        CheckNewDiscoveries();
+        //CheckNewDiscoveries();
     }
 
     public void UpdatePictureCount(int _newPictureCount)

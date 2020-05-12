@@ -18,6 +18,6 @@ MonoBehaviour:
   m_knownFleeCount: 0
   m_knownFleeCountThisRound: 0
   m_preferredRegions: 0300000002000000
-  m_knownPreferredRegions: 0000
+  m_knownPreferredRegions: 0100
   m_knownPreferredRegionsThisRound: 0000
   evidencePhotos: []
