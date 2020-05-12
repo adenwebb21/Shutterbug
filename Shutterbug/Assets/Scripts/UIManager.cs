@@ -97,7 +97,7 @@ public class UIManager : MonoBehaviour
 
     public void AddTimeFled()
     {
-        timesFled.SetText(timesFled.text + "I");
+        //timesFled.SetText(timesFled.text + "I");
     }
 
     public void CheckNewDiscoveries()
