@@ -1210,6 +1210,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1328436615}
     m_Modifications:
+    - target: {fileID: 5432094378707626880, guid: 8517b0f0afe5db74cb44e3524abe621b,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432094378707626880, guid: 8517b0f0afe5db74cb44e3524abe621b,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 28.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432094378707626880, guid: 8517b0f0afe5db74cb44e3524abe621b,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432094378707626880, guid: 8517b0f0afe5db74cb44e3524abe621b,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432094378707626880, guid: 8517b0f0afe5db74cb44e3524abe621b,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432094378707626880, guid: 8517b0f0afe5db74cb44e3524abe621b,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5432094379169381081, guid: 8517b0f0afe5db74cb44e3524abe621b,
         type: 3}
       propertyPath: m_Name
