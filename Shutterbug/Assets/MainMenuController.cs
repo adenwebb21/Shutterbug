@@ -5,12 +5,24 @@ using UnityEngine;
 public class MainMenuController : MonoBehaviour
 {
     public Animator book, frontCover, firstPage, bookEdge;
+    public GameObject trackButton;
+    private bool m_isBookOpen = false;
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && !m_isBookOpen)
         {
             OpenBook();
+            m_isBookOpen = true;
+        }
+
+        if(m_isBookOpen)
+        {
+            trackButton.SetActive(true);
+        }
+        else
+        {
+            trackButton.SetActive(false);
         }
     }
 

@@ -310,6 +310,7 @@ MonoBehaviour:
   frontCover: {fileID: 963918231}
   firstPage: {fileID: 2032581056}
   bookEdge: {fileID: 1927524710}
+  trackButton: {fileID: 890063288}
 --- !u!4 &40714773
 Transform:
   m_ObjectHideFlags: 0
@@ -1005,7 +1006,7 @@ PrefabInstance:
     - target: {fileID: 3770485454800705115, guid: daf2901105d713549bc73a82a370646a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daf2901105d713549bc73a82a370646a, type: 3}
@@ -1349,6 +1350,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432094379999988673, guid: 8517b0f0afe5db74cb44e3524abe621b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 5.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8602462703738729012, guid: 8517b0f0afe5db74cb44e3524abe621b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9213303080865267151, guid: 8517b0f0afe5db74cb44e3524abe621b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -4.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8517b0f0afe5db74cb44e3524abe621b, type: 3}
