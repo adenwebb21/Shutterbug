@@ -26,6 +26,8 @@ public class UIManager : MonoBehaviour
     public GameObject discoveriesObject;
     private bool m_handBookOpen = false;
 
+    public GameObject nextStagePrompt;
+
     void Awake()
     {
         //Singleton Implementation
@@ -80,10 +82,10 @@ public class UIManager : MonoBehaviour
         stealthBar.fillAmount = _fillValue;
     }
 
-    public void EnablePromptText()
-    {
-        promptText.SetActive(true);
-    }
+    //public void EnablePromptText()
+    //{
+    //    promptText.SetActive(true);
+    //}
 
     public void EntryPrompt()
     {
@@ -125,6 +127,11 @@ public class UIManager : MonoBehaviour
 
             _counter++;
         }
+    }
+
+    public void NextStagePrompt()
+    {
+        nextStagePrompt.GetComponent<Animator>().Play("fade_in");
     }
 
 
