@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ce7b0c99a5c814bb90d0e1b604f130, type: 3}
   m_Name: Mosstop
   m_EditorClassIdentifier: 
-  m_currentPerception: 51.371685
+  m_currentPerception: 0
   m_defaultPerception: 55
   m_maxFleeCount: 3
   m_knownFleeCount: 0
@@ -20,4 +20,6 @@ MonoBehaviour:
   m_preferredRegions: 0300000002000000
   m_knownPreferredRegions: 0000
   m_knownPreferredRegionsThisRound: 0000
-  evidencePhotos: []
+  evidencePhotos:
+  - {fileID: 0}
+  - {fileID: 0}
