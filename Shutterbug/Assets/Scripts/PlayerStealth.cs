@@ -112,4 +112,15 @@ public class PlayerStealth : MonoBehaviour
             yield return null;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Region")
+        {
+            if(GameManager.Instance.currentPlayerArea != other.gameObject.GetComponent<RegionDefinition>().regionIdentifier)
+            {
+                GameManager.Instance.currentPlayerArea = other.gameObject.GetComponent<RegionDefinition>().regionIdentifier;
+            }
+        }
+    }
 }

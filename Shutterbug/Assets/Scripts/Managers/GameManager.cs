@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject initialSpawner;
 
+    public string currentPlayerArea;
+
     void Awake()
     {
         if (s_instance != null && s_instance != this)

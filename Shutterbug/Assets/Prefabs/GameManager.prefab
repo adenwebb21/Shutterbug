@@ -55,7 +55,7 @@ MonoBehaviour:
   proofsInWorld: []
   bestPhoto: {fileID: 0}
   bestPhotoScore: 0
-  photoCap: 10
+  photoCap: 5
   levelLoader: {fileID: 0}
   enoughPhotos: {fileID: 11400000, guid: 90dea83ac10da2b44b80bed3c67fed73, type: 2}
   initialSpawner: {fileID: 0}
