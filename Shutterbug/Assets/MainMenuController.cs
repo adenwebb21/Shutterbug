@@ -5,8 +5,14 @@ using UnityEngine;
 public class MainMenuController : MonoBehaviour
 {
     public Animator book, frontCover, firstPage, bookEdge;
-    public GameObject trackButton;
+    public GameObject trackButton, startPrompt;
     private bool m_isBookOpen = false;
+
+    private void Start()
+    {
+        trackButton.SetActive(false);
+        startPrompt.SetActive(true);
+    }
 
     void Update()
     {
@@ -14,6 +20,7 @@ public class MainMenuController : MonoBehaviour
         {
             OpenBook();
             m_isBookOpen = true;
+            startPrompt.SetActive(false);
         }
 
         if(m_isBookOpen)
@@ -22,7 +29,7 @@ public class MainMenuController : MonoBehaviour
         }
         else
         {
-            trackButton.SetActive(false);
+            trackButton.SetActive(false);          
         }
     }
 
