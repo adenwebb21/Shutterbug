@@ -33,7 +33,7 @@ public class Scoring : MonoBehaviour
 
     private void Start()
     {
-        m_randomAdditions = new string[] { "Ghost in frame: ", "Faced camera in the right direction: ", "Nice exposure: ", "Nailed the focus: "};
+        m_randomAdditions = new string[] { "Good lighting: ", "Lucky shot: ", "Nice exposure: ", "Nailed the focus: "};
     }
 
     public void ReturnToMenu()
