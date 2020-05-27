@@ -1880,4 +1880,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/TestEnvironment.unity
   - Assets/Scenes/HandIn.unity
-  playerPath: C:/Users/adenw/Desktop/test/Shutterbug.exe
+  playerPath: E:/GitHub/Shutterbug/Build/Shutterbug.exe
