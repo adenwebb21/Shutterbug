@@ -28,6 +28,8 @@ public class TakePhoto : MonoBehaviour
 
     private void Capture()
     {
+        this.GetComponent<AudioSource>().Play();
+
         Camera _cam = GetComponent<Camera>();
 
         RenderTexture _currentRenderTexture = RenderTexture.active;
