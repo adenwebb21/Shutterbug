@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject initialSpawner;
 
+    public string currentPlayerArea;
+
     void Awake()
     {
         if (s_instance != null && s_instance != this)
@@ -101,7 +103,7 @@ public class GameManager : MonoBehaviour
             m_cryptidSpawned = true;
         }
 
-        m_spawnChance = Mathf.Clamp(m_spawnChance + 25, 0f, 100f);
+        m_spawnChance = Mathf.Clamp(m_spawnChance + 50, 0f, 100f);
     }
 
     public void ResetPhotos()

@@ -26,6 +26,8 @@ public class UIManager : MonoBehaviour
     public GameObject discoveriesObject;
     private bool m_handBookOpen = false;
 
+    public GameObject nextStagePrompt;
+
     void Awake()
     {
         //Singleton Implementation
@@ -62,7 +64,7 @@ public class UIManager : MonoBehaviour
     {
         promptText.SetActive(false);
 
-        CheckNewDiscoveries();
+        //CheckNewDiscoveries();
     }
 
     public void UpdatePictureCount(int _newPictureCount)
@@ -72,7 +74,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateProofCount(int _newProofCount)
     {
-        proofCount.SetText(_newProofCount.ToString());
+        //proofCount.SetText(_newProofCount.ToString());
     }
 
     public void UpdateStealthFillAmount(float _fillValue)
@@ -80,10 +82,10 @@ public class UIManager : MonoBehaviour
         stealthBar.fillAmount = _fillValue;
     }
 
-    public void EnablePromptText()
-    {
-        promptText.SetActive(true);
-    }
+    //public void EnablePromptText()
+    //{
+    //    promptText.SetActive(true);
+    //}
 
     public void EntryPrompt()
     {
@@ -97,7 +99,7 @@ public class UIManager : MonoBehaviour
 
     public void AddTimeFled()
     {
-        timesFled.SetText(timesFled.text + "I");
+        //timesFled.SetText(timesFled.text + "I");
     }
 
     public void CheckNewDiscoveries()
@@ -125,6 +127,11 @@ public class UIManager : MonoBehaviour
 
             _counter++;
         }
+    }
+
+    public void NextStagePrompt()
+    {
+        nextStagePrompt.GetComponent<Animator>().Play("fade_in");
     }
 
 

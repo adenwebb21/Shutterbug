@@ -86,7 +86,7 @@ public class BookHandler : MonoBehaviour
     {
         bestPhotoImage.GetComponent<Image>().color = new Color(255, 255, 255);
         bestPhotoImage.GetComponent<Image>().sprite = GameManager.Instance.bestPhoto.Image;
-        bestPhotoScore.GetComponent<TextMeshProUGUI>().text = "SCORE: " + GameManager.Instance.bestPhotoScore;
+        bestPhotoScore.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.bestPhotoScore.ToString();
     }
 
     public void InstantText(TextMeshProUGUI _textElement, string _textToWrite)

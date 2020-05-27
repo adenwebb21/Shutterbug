@@ -19,6 +19,7 @@ TagManager:
   - MenuBook
   - Proof
   - Handbook
+  - Region
   layers:
   - Default
   - TransparentFX

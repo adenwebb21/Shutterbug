@@ -70,8 +70,9 @@ public class LocationSwitcher : MonoBehaviour
             // Choose point based on preference
             int _randomIndex = 0;
 
-            while (_randomIndex == m_currentIndex || spawnLocations[_randomIndex].spawnRegion == spawnLocations[m_currentIndex].spawnRegion || !m_propertyBlock.stats.PreferredRegions.Contains(spawnLocations[_randomIndex].spawnRegion))
+            while (GameManager.Instance.currentPlayerArea == spawnLocations[_randomIndex].spawnRegion.ToString().ToLower() || _randomIndex == m_currentIndex || /*spawnLocations[_randomIndex].spawnRegion == spawnLocations[m_currentIndex].spawnRegion ||*/ !m_propertyBlock.stats.PreferredRegions.Contains(spawnLocations[_randomIndex].spawnRegion))
             {
+                //
                 _randomIndex = Random.Range(0, spawnLocations.Count);
             }
 
